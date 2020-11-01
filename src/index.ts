@@ -50,7 +50,7 @@ const extension: JupyterFrontEndPlugin<void> = {
 
 	// Get some info from the gprime_server:
 	try {
-	    const data = await requestAPI<any>('get_example');
+	    const data = await requestAPI<any>('get_family_trees');
 	    console.log(data);
 	} catch (err) {
 	    console.error(
