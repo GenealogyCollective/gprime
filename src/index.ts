@@ -2,78 +2,108 @@ import {
     JupyterFrontEnd,
     JupyterFrontEndPlugin
 } from '@jupyterlab/application';
-import {
-  ICommandPalette,
-  MainAreaWidget
-} from '@jupyterlab/apputils';
-import { IFileBrowserFactory } from '@jupyterlab/filebrowser';
-import { ILauncher } from '@jupyterlab/launcher';
+import { ICommandPalette } from '@jupyterlab/apputils';
 import { IMainMenu } from '@jupyterlab/mainmenu';
-import { Widget } from '@lumino/widgets';
+import {
+    ITranslator,
+    nullTranslator,
+    TranslationBundle
+} from '@jupyterlab/translation';
+import { DataGrid, DataModel } from '@lumino/datagrid';
+import { Menu, StackedPanel } from '@lumino/widgets';
 
 import { requestAPI } from './handler';
 
 /**
- * Initialization data for the gprime extension.
+ * Initialization data for the extension1 extension.
  */
 const extension: JupyterFrontEndPlugin<void> = {
-    id: 'gprime',
+    id: 'datagrid',
     autoStart: true,
-    requires: [IFileBrowserFactory],
-    optional: [ILauncher, IMainMenu, ICommandPalette],
-    activate: (
+    requires: [ICommandPalette, IMainMenu, ITranslator],
+    activate: async (
 	app: JupyterFrontEnd,
-	browserFactory: IFileBrowserFactory,
-	launcher: IFileBrowserFactory,
-	mainMenu: IMainMenu | null,
-	palette: ICommandPalette | null
+	palette: ICommandPalette,
+	mainMenu: IMainMenu,
+	translator: ITranslator
     ) => {
-    console.log('JupyterLab extension gprime is activated!!!');
+	const { commands, shell } = app;
+	const trans = translator.load('jupyterlab');
 
-    // Create a blank content widget inside of a MainAreaWidget
-    const content = new Widget();
-    const widget = new MainAreaWidget({ content });
-    widget.id = 'gprime-jupyterlab';
-    widget.title.label = 'gprime Genealogy';
-    widget.title.closable = true;
+	const command = 'examples:datagrid';
+	commands.addCommand(command, {
+	    label: trans.__('Open a Datagrid'),
+	    caption: trans.__('Open a Datagrid Panel'),
+	    execute: () => {
+		const widget = new DataGridPanel();
+		shell.add(widget, 'main');
+	    }
+	});
+	palette.addItem({ command, category: 'Extension Examples' });
 
-    // Add an application command
-    const command: string = 'gprime:open';
-    app.commands.addCommand(command, {
-      label: 'gprime Window',
-      execute: () => {
-        if (!widget.isAttached) {
-          // Attach the widget to the main work area if it's not there
-          app.shell.add(widget, 'main');
-        }
-        // Activate the widget
-        app.shell.activateById(widget.id);
-      }
-    });
+	const exampleMenu = new Menu({ commands });
 
-      // Add the command to the palette.
-      if (palette) {
-	  palette.addItem({ command, category: 'Application' });
-      } else {
-	  console.log("palette is null");
-      }
-      if (mainMenu) {
-	  //
-      } else {
-	  console.log("mainmenu is null");
-      }
+	exampleMenu.title.label = trans.__('DataGrid Example');
+	mainMenu.addMenu(exampleMenu, { rank: 80 });
+	exampleMenu.addItem({ command });
 
-    // Get some info from the gprime_server:
-    requestAPI<any>('get_example')
-      .then(data => {
-        console.log(data);
-      })
-      .catch(reason => {
-        console.error(
-          `The gprime_server server extension appears to be missing.\n${reason}`
-        );
-      });
-  }
+
+	// Get some info from the gprime_server:
+	try {
+	    const data = await requestAPI<any>('get_example');
+	    console.log(data);
+	} catch (err) {
+	    console.error(
+		`The gprime_server server extension appears to be missing.\n${err}`
+	    );
+	}
+    }
+
 };
 
 export default extension;
+
+class DataGridPanel extends StackedPanel {
+  constructor(translator?: ITranslator) {
+    super();
+    this._translator = translator || nullTranslator;
+    this._trans = this._translator.load('jupyterlab');
+
+    this.addClass('jp-example-view');
+    this.id = 'datagrid-example';
+    this.title.label = this._trans.__('Datagrid Example View');
+    this.title.closable = true;
+
+    const model = new LargeDataModel();
+    const grid = new DataGrid();
+    grid.dataModel = model;
+
+    this.addWidget(grid);
+  }
+
+  private _translator: ITranslator;
+  private _trans: TranslationBundle;
+}
+
+class LargeDataModel extends DataModel {
+  rowCount(region: DataModel.RowRegion): number {
+    return region === 'body' ? 1000000000000 : 2;
+  }
+
+  columnCount(region: DataModel.ColumnRegion): number {
+    return region === 'body' ? 1000000000000 : 3;
+  }
+
+  data(region: DataModel.CellRegion, row: number, column: number): any {
+    if (region === 'row-header') {
+      return `R: ${row}, ${column}`;
+    }
+    if (region === 'column-header') {
+      return `C: ${row}, ${column}`;
+    }
+    if (region === 'corner-header') {
+      return `N: ${row}, ${column}`;
+    }
+    return `(${row}, ${column})`;
+  }
+}
