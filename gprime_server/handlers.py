@@ -64,7 +64,22 @@ class FamilyTreeStats(APIHandler):
     def post(self):
         input_data = self.get_json_body()
         print(input_data["path_name"])
-        results = {"rows": 42}
+        results = {"rows": 42, "cols": 10}
+        self.finish(json.dumps(results))
+
+class FamilyTreePage(APIHandler):
+    @tornado.web.authenticated
+    def post(self):
+        input_data = self.get_json_body()
+        table = input_data["table"]
+        start_pos = input_data["start_pos"]
+        page_size = input_data["page_size"]
+        results = []
+        for row in range(page_size):
+            data = []
+            for col in range(10):
+                data.append("Data")
+            results.append(data)
         self.finish(json.dumps(results))
 
 def setup_handlers(web_app):
@@ -72,13 +87,14 @@ def setup_handlers(web_app):
     base_url = web_app.settings["base_url"]
 
     handlers = []
-    #route_pattern = url_path_join(base_url, "gprime_server", "get_example")
-    #handlers = [(route_pattern, RouteHandler)]
 
     route_pattern = url_path_join(base_url, "gprime_server", "get_family_trees")
     handlers += [(route_pattern, FamilyTrees)]
 
     route_pattern = url_path_join(base_url, "gprime_server", "get_family_tree_stats")
     handlers += [(route_pattern, FamilyTreeStats)]
+
+    route_pattern = url_path_join(base_url, "gprime_server", "get_family_tree_page")
+    handlers += [(route_pattern, FamilyTreePage)]
 
     web_app.add_handlers(host_pattern, handlers)
