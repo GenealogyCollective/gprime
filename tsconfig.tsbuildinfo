@@ -121,6 +121,11 @@
         "signature": "d2f31f19e1ba6ed59be9259d660a239d9a3fcbbc8e038c6b2009bde34b175fed",
         "affectsGlobalScope": false
       },
+      "./src/database.ts": {
+        "version": "85b80c1b7e794b8df986014df42b9533aac96bb3937c978e16a6b533759530ad",
+        "signature": "f369e249990133f89db6e05e146146de7cc6ae43f31251db9427637022311d6b",
+        "affectsGlobalScope": false
+      },
       "./node_modules/@lumino/algorithm/types/array.d.ts": {
         "version": "df52f40fae2bd287b9fb52f0d4cd6978891f5b9e12c8bc4b51f5aeb20673db24",
         "signature": "df52f40fae2bd287b9fb52f0d4cd6978891f5b9e12c8bc4b51f5aeb20673db24",
@@ -221,39 +226,54 @@
         "signature": "97056de69d4d1897fa4d77b047fdfd64771269238bd627b7ff5af6cd2bc8edf1",
         "affectsGlobalScope": false
       },
-      "./node_modules/@jupyterlab/coreutils/lib/activitymonitor.d.ts": {
-        "version": "b5575443873e492a09e84e53f65c37a24f5d291a306036f74fd34646ee9c14dd",
-        "signature": "b5575443873e492a09e84e53f65c37a24f5d291a306036f74fd34646ee9c14dd",
+      "./node_modules/@lumino/messaging/types/index.d.ts": {
+        "version": "cac40d24651330bd29ebcf835dc9014a8d9ce02219503fb1dd880ffd27d71b3b",
+        "signature": "cac40d24651330bd29ebcf835dc9014a8d9ce02219503fb1dd880ffd27d71b3b",
         "affectsGlobalScope": false
       },
-      "./node_modules/@jupyterlab/coreutils/lib/interfaces.d.ts": {
-        "version": "e4591a005f34ccbbbec0bd140702e243387d57a21b1d4bb6bd3e76de152fc89f",
-        "signature": "e4591a005f34ccbbbec0bd140702e243387d57a21b1d4bb6bd3e76de152fc89f",
+      "./node_modules/@lumino/widgets/types/boxengine.d.ts": {
+        "version": "6ce99f2c6e7c79a0b467e93cc607909fdeea4075ac24b2ea26df81c756c91197",
+        "signature": "6ce99f2c6e7c79a0b467e93cc607909fdeea4075ac24b2ea26df81c756c91197",
         "affectsGlobalScope": false
       },
-      "./node_modules/@jupyterlab/coreutils/lib/markdowncodeblocks.d.ts": {
-        "version": "377fa33e5213ba934d4350d674296c1387aa2ebd225e2a296a465bb691915884",
-        "signature": "377fa33e5213ba934d4350d674296c1387aa2ebd225e2a296a465bb691915884",
+      "./node_modules/@lumino/virtualdom/types/index.d.ts": {
+        "version": "44a8be96842899b8250784c2f87eea9f7e084931a4478baf6cf4109560b0533a",
+        "signature": "44a8be96842899b8250784c2f87eea9f7e084931a4478baf6cf4109560b0533a",
         "affectsGlobalScope": false
       },
-      "./node_modules/@jupyterlab/coreutils/lib/pageconfig.d.ts": {
-        "version": "7c9a927204757f739e8a61d1d66a43b0caa4c921eb558f94b1880017909a51b6",
-        "signature": "7c9a927204757f739e8a61d1d66a43b0caa4c921eb558f94b1880017909a51b6",
+      "./node_modules/@lumino/widgets/types/title.d.ts": {
+        "version": "069430905191c1c7d58b608084a53b30584aa0c8a60134787578161ec8cafc72",
+        "signature": "069430905191c1c7d58b608084a53b30584aa0c8a60134787578161ec8cafc72",
         "affectsGlobalScope": false
       },
-      "./node_modules/@jupyterlab/coreutils/lib/path.d.ts": {
-        "version": "6baff3e4e3aca45d2879a6b26369316430f8756d85319898c64c69019036ab61",
-        "signature": "6baff3e4e3aca45d2879a6b26369316430f8756d85319898c64c69019036ab61",
+      "./node_modules/@lumino/widgets/types/widget.d.ts": {
+        "version": "813737a8cd7bd632b12d427e288818157c5dd79beadcd7930c55aeb7ff75668e",
+        "signature": "813737a8cd7bd632b12d427e288818157c5dd79beadcd7930c55aeb7ff75668e",
         "affectsGlobalScope": false
       },
-      "./node_modules/@jupyterlab/coreutils/lib/text.d.ts": {
-        "version": "7efd9303320cf186211b14e1723172a2bc15378c0d95e49990f31be5d2f271d4",
-        "signature": "7efd9303320cf186211b14e1723172a2bc15378c0d95e49990f31be5d2f271d4",
+      "./node_modules/@lumino/widgets/types/layout.d.ts": {
+        "version": "9606217cee9da6af32701c4a4ec62c5e1c08a8c81e9b40444bd02007981f35ad",
+        "signature": "9606217cee9da6af32701c4a4ec62c5e1c08a8c81e9b40444bd02007981f35ad",
         "affectsGlobalScope": false
       },
-      "./node_modules/@jupyterlab/coreutils/lib/time.d.ts": {
-        "version": "315dfd130e525ffa1934e769dc2266bafb35d021951a7845eb145089501ed86d",
-        "signature": "315dfd130e525ffa1934e769dc2266bafb35d021951a7845eb145089501ed86d",
+      "./node_modules/@lumino/widgets/types/panellayout.d.ts": {
+        "version": "b6fe9902db09a08fb5816c2644d47b21b48763a6493d1f2080dcc8f97f63ffd5",
+        "signature": "b6fe9902db09a08fb5816c2644d47b21b48763a6493d1f2080dcc8f97f63ffd5",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/boxlayout.d.ts": {
+        "version": "094bc98f1966930b9b31f714ff4689cc2282348d2ac06614d2dfa3e3a0dd2bee",
+        "signature": "094bc98f1966930b9b31f714ff4689cc2282348d2ac06614d2dfa3e3a0dd2bee",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/panel.d.ts": {
+        "version": "4ea4e4aeb7cc473d641ec53cc7a05324ff1c528e452e1a0f5949a245911d4775",
+        "signature": "4ea4e4aeb7cc473d641ec53cc7a05324ff1c528e452e1a0f5949a245911d4775",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/boxpanel.d.ts": {
+        "version": "eb0acd32fc29c07e864c737a4811b71159e03833b36febb85f7e47259d87e135",
+        "signature": "eb0acd32fc29c07e864c737a4811b71159e03833b36febb85f7e47259d87e135",
         "affectsGlobalScope": false
       },
       "./node_modules/@lumino/coreutils/types/json.d.ts": {
@@ -291,6 +311,271 @@
         "signature": "14291b5cf9f3318a8aec9e856b6563cc1aaf8b0fc4b7a87117f29ecac8e7b803",
         "affectsGlobalScope": false
       },
+      "./node_modules/@lumino/commands/types/index.d.ts": {
+        "version": "7506970552ee6175b21032f115affb5f91bf41fc24f7d8310e1a21d49b636e49",
+        "signature": "7506970552ee6175b21032f115affb5f91bf41fc24f7d8310e1a21d49b636e49",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/commandpalette.d.ts": {
+        "version": "05d9a8f0c106e662d8dfea3d5fdda3d736b5b01cf07504df026ebdd5b0a6777a",
+        "signature": "05d9a8f0c106e662d8dfea3d5fdda3d736b5b01cf07504df026ebdd5b0a6777a",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/menu.d.ts": {
+        "version": "a84fdd5325d4dc7e2adff61b951529ae6e168edd476c90e7003e959d5398a8f8",
+        "signature": "a84fdd5325d4dc7e2adff61b951529ae6e168edd476c90e7003e959d5398a8f8",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/contextmenu.d.ts": {
+        "version": "0408afb474542f58f54367587274e5363d622293e7610e7b811242a00ae4d2fe",
+        "signature": "0408afb474542f58f54367587274e5363d622293e7610e7b811242a00ae4d2fe",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/tabbar.d.ts": {
+        "version": "8752ebc7aa2662b0e669ca430dbf6828f1a406f45fb43b376359a7f7be68b270",
+        "signature": "8752ebc7aa2662b0e669ca430dbf6828f1a406f45fb43b376359a7f7be68b270",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/docklayout.d.ts": {
+        "version": "7f844465fd87097c35cf3cb13cc77e28c8e7429eab6750c4a49500125b6e48b2",
+        "signature": "7f844465fd87097c35cf3cb13cc77e28c8e7429eab6750c4a49500125b6e48b2",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/dockpanel.d.ts": {
+        "version": "cac95c328a04ebcce9b6ff3afb8d64d6d6c0964e99e0542ec7529784d8f75dc8",
+        "signature": "cac95c328a04ebcce9b6ff3afb8d64d6d6c0964e99e0542ec7529784d8f75dc8",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/focustracker.d.ts": {
+        "version": "a7c7b25084276be11aa983dbf29f39892db6c521b85433f598717921bf64d08e",
+        "signature": "a7c7b25084276be11aa983dbf29f39892db6c521b85433f598717921bf64d08e",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/gridlayout.d.ts": {
+        "version": "9d3fb450742b3f5c5f459177e70fa3c4c4ab52d0b4215be87cfcdf5fc8685ad2",
+        "signature": "9d3fb450742b3f5c5f459177e70fa3c4c4ab52d0b4215be87cfcdf5fc8685ad2",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/menubar.d.ts": {
+        "version": "0676ad817bf1b4c310e58ce87e32fd9fa6f9229c6a2a6b5d5f7e92b09b7bfa77",
+        "signature": "0676ad817bf1b4c310e58ce87e32fd9fa6f9229c6a2a6b5d5f7e92b09b7bfa77",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/scrollbar.d.ts": {
+        "version": "ff8fce615e42a7a40d34fd1110488663bc010469e7cd3d21df8ddda06f6ebd95",
+        "signature": "ff8fce615e42a7a40d34fd1110488663bc010469e7cd3d21df8ddda06f6ebd95",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/singletonlayout.d.ts": {
+        "version": "cb114e95d686eadc19feda14f7ae0c497fd060415cf669d4062447ef22b54e93",
+        "signature": "cb114e95d686eadc19feda14f7ae0c497fd060415cf669d4062447ef22b54e93",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/splitlayout.d.ts": {
+        "version": "115b150e7d81fb2e80d204b7f1082c13fd9650195da846a74f6f2b43b022579e",
+        "signature": "115b150e7d81fb2e80d204b7f1082c13fd9650195da846a74f6f2b43b022579e",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/splitpanel.d.ts": {
+        "version": "bd5604d87894ac046a5f017c1fd820f15fcf70d58ac7db47e537205cf5a9f80d",
+        "signature": "bd5604d87894ac046a5f017c1fd820f15fcf70d58ac7db47e537205cf5a9f80d",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/stackedlayout.d.ts": {
+        "version": "c7e1800b0e4e0914d2109b02cc4efa98c3fb79acb98f6a9a0dd5c1311576a42f",
+        "signature": "c7e1800b0e4e0914d2109b02cc4efa98c3fb79acb98f6a9a0dd5c1311576a42f",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/stackedpanel.d.ts": {
+        "version": "c94759a4b4d2f1044f2b03f3057319194739841524d22aa73b13e556a99bef5c",
+        "signature": "c94759a4b4d2f1044f2b03f3057319194739841524d22aa73b13e556a99bef5c",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/tabpanel.d.ts": {
+        "version": "887ef5e98f4b329f3ddf17864d45a9f2ee82608aa43666f95863b690e261a1ee",
+        "signature": "887ef5e98f4b329f3ddf17864d45a9f2ee82608aa43666f95863b690e261a1ee",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/widgets/types/index.d.ts": {
+        "version": "3575fd6e7b41c7b983d39ae80434267391f78d28b48a8af78f9f26e4535de01b",
+        "signature": "3575fd6e7b41c7b983d39ae80434267391f78d28b48a8af78f9f26e4535de01b",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/datamodel.d.ts": {
+        "version": "6d624e60cc9bef0d42b1752d175a6786ee4063348791667d3758225e6cba9f75",
+        "signature": "6d624e60cc9bef0d42b1752d175a6786ee4063348791667d3758225e6cba9f75",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/graphicscontext.d.ts": {
+        "version": "81c74b3df537867fb68ea9734770225b10701bcd61367e5cb1fd7cc439d368e2",
+        "signature": "81c74b3df537867fb68ea9734770225b10701bcd61367e5cb1fd7cc439d368e2",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/cellrenderer.d.ts": {
+        "version": "2507e0609fda94106c7c465000c33fd9054fb0603b162d4210f325877cda83ff",
+        "signature": "2507e0609fda94106c7c465000c33fd9054fb0603b162d4210f325877cda83ff",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/renderermap.d.ts": {
+        "version": "6171124988e8187f6a9496a90d27d991b1926bc4aeb274c055b8db7da817da03",
+        "signature": "6171124988e8187f6a9496a90d27d991b1926bc4aeb274c055b8db7da817da03",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/sectionlist.d.ts": {
+        "version": "14b1d8b51ab2e6dc571fb38e1955ef6866ee1c734630db676c9c5b3a0238d577",
+        "signature": "14b1d8b51ab2e6dc571fb38e1955ef6866ee1c734630db676c9c5b3a0238d577",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/selectionmodel.d.ts": {
+        "version": "36e32d173726dc79ba8a3b78f8f113a123e91e5ab26ef97790c787e950e8a976",
+        "signature": "36e32d173726dc79ba8a3b78f8f113a123e91e5ab26ef97790c787e950e8a976",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/notification.d.ts": {
+        "version": "299228e025ba7c849473b9e3ff14d549244dd3c5bd32eeb60dc93a3bf7a53bee",
+        "signature": "299228e025ba7c849473b9e3ff14d549244dd3c5bd32eeb60dc93a3bf7a53bee",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/celleditor.d.ts": {
+        "version": "b8f03228a4f9581dce437c89e29cc8d8f15107b3ff0205c00086d1c881ce3ef8",
+        "signature": "b8f03228a4f9581dce437c89e29cc8d8f15107b3ff0205c00086d1c881ce3ef8",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/celleditorcontroller.d.ts": {
+        "version": "591c6dd68a3bd72ce4b17caa4eadf1b73158f01918cac8dc57b2bb840286d1b4",
+        "signature": "591c6dd68a3bd72ce4b17caa4eadf1b73158f01918cac8dc57b2bb840286d1b4",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/datagrid.d.ts": {
+        "version": "726041c4dd8772bd59dc523ba47f4f3540fa720e88c8e025eb073815a98b42c4",
+        "signature": "726041c4dd8772bd59dc523ba47f4f3540fa720e88c8e025eb073815a98b42c4",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/basickeyhandler.d.ts": {
+        "version": "47c8c15c6f41592cc837c5a2dc90507ea68b211a5b090656d3c145f88a662ee8",
+        "signature": "47c8c15c6f41592cc837c5a2dc90507ea68b211a5b090656d3c145f88a662ee8",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/basicmousehandler.d.ts": {
+        "version": "aae754b014fd52fe12bc8c1337707c6e05dbafe111fb438cdc7e536e54ab2b39",
+        "signature": "aae754b014fd52fe12bc8c1337707c6e05dbafe111fb438cdc7e536e54ab2b39",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/basicselectionmodel.d.ts": {
+        "version": "1e8305b2e3e5c6288174258dc7c543ff115445e3d766083b9d6a99600c9554a3",
+        "signature": "1e8305b2e3e5c6288174258dc7c543ff115445e3d766083b9d6a99600c9554a3",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/jsonmodel.d.ts": {
+        "version": "db912a4c42a0f886ede1f73343b60bd192da0efc25985c4e3090fddec636d3b3",
+        "signature": "db912a4c42a0f886ede1f73343b60bd192da0efc25985c4e3090fddec636d3b3",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/textrenderer.d.ts": {
+        "version": "53c7fe7b949f7de9ed0b252a9944f0abbee9c0a348e300b22f00907e28032314",
+        "signature": "53c7fe7b949f7de9ed0b252a9944f0abbee9c0a348e300b22f00907e28032314",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@lumino/datagrid/types/index.d.ts": {
+        "version": "05f28d1617a601f91efeb4ed755eea2e0aea10194cbec584ac5779fd1e7ab1a8",
+        "signature": "05f28d1617a601f91efeb4ed755eea2e0aea10194cbec584ac5779fd1e7ab1a8",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/statedb/lib/interfaces.d.ts": {
+        "version": "9bfdb958a6b460d0c0c0f2781dece557cd20698820f0d4e644690dc23bc05cd9",
+        "signature": "9bfdb958a6b460d0c0c0f2781dece557cd20698820f0d4e644690dc23bc05cd9",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/statedb/lib/dataconnector.d.ts": {
+        "version": "bd969829f3805c917933ef812d4cabe2c045aff801859f2c5166eb8d56aea4eb",
+        "signature": "bd969829f3805c917933ef812d4cabe2c045aff801859f2c5166eb8d56aea4eb",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/statedb/lib/restorablepool.d.ts": {
+        "version": "4c21323d9575649908d578c403dac9a3f240e839c5e0f3a7422d6bdea0d596f8",
+        "signature": "4c21323d9575649908d578c403dac9a3f240e839c5e0f3a7422d6bdea0d596f8",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/statedb/lib/tokens.d.ts": {
+        "version": "2b793820a0e7d5fc41a8e3b7361a9bbb61538ccd997b3e324311dd100828830f",
+        "signature": "2b793820a0e7d5fc41a8e3b7361a9bbb61538ccd997b3e324311dd100828830f",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/statedb/lib/statedb.d.ts": {
+        "version": "f8c57de65d7a1c151041621bf9ed1cc3da20ffb5bd004182e4e04dbbaa21e41e",
+        "signature": "f8c57de65d7a1c151041621bf9ed1cc3da20ffb5bd004182e4e04dbbaa21e41e",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/statedb/lib/index.d.ts": {
+        "version": "ea3d38e208051abbe4045b494f6988e326a6f41d28f06a4e6fc097f9f4b51581",
+        "signature": "ea3d38e208051abbe4045b494f6988e326a6f41d28f06a4e6fc097f9f4b51581",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/translation/lib/tokens.d.ts": {
+        "version": "ab6e7d1ca38e1b07c80f85895ca12382361bbfb6bb6611ca92a629692d51a590",
+        "signature": "ab6e7d1ca38e1b07c80f85895ca12382361bbfb6bb6611ca92a629692d51a590",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/translation/lib/base.d.ts": {
+        "version": "7e80cbd62318016cfedfd4ccb53f930b4abe7f4b6bc4673fd8ec44f9de6243e2",
+        "signature": "7e80cbd62318016cfedfd4ccb53f930b4abe7f4b6bc4673fd8ec44f9de6243e2",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/translation/lib/gettext.d.ts": {
+        "version": "176a56f3db4873d126f7f242c4538e0bc3866a0f58ca1acbdaf8bcfd331c4db3",
+        "signature": "176a56f3db4873d126f7f242c4538e0bc3866a0f58ca1acbdaf8bcfd331c4db3",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/translation/lib/manager.d.ts": {
+        "version": "31801ba2e3cd683c5a84ee3054a697a48be477aeeb7300eb1bd3b50cf7472b00",
+        "signature": "31801ba2e3cd683c5a84ee3054a697a48be477aeeb7300eb1bd3b50cf7472b00",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/translation/lib/server.d.ts": {
+        "version": "313fb1cdbefa46cf2103c004b9f1d53c96a13ef17576c65439945d581442d73d",
+        "signature": "313fb1cdbefa46cf2103c004b9f1d53c96a13ef17576c65439945d581442d73d",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/translation/lib/index.d.ts": {
+        "version": "66d4d6573c40ab094ecb354ea935809de64467b269d2acb170e8eace206f1c04",
+        "signature": "66d4d6573c40ab094ecb354ea935809de64467b269d2acb170e8eace206f1c04",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/coreutils/lib/activitymonitor.d.ts": {
+        "version": "b5575443873e492a09e84e53f65c37a24f5d291a306036f74fd34646ee9c14dd",
+        "signature": "b5575443873e492a09e84e53f65c37a24f5d291a306036f74fd34646ee9c14dd",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/coreutils/lib/interfaces.d.ts": {
+        "version": "e4591a005f34ccbbbec0bd140702e243387d57a21b1d4bb6bd3e76de152fc89f",
+        "signature": "e4591a005f34ccbbbec0bd140702e243387d57a21b1d4bb6bd3e76de152fc89f",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/coreutils/lib/markdowncodeblocks.d.ts": {
+        "version": "377fa33e5213ba934d4350d674296c1387aa2ebd225e2a296a465bb691915884",
+        "signature": "377fa33e5213ba934d4350d674296c1387aa2ebd225e2a296a465bb691915884",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/coreutils/lib/pageconfig.d.ts": {
+        "version": "7c9a927204757f739e8a61d1d66a43b0caa4c921eb558f94b1880017909a51b6",
+        "signature": "7c9a927204757f739e8a61d1d66a43b0caa4c921eb558f94b1880017909a51b6",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/coreutils/lib/path.d.ts": {
+        "version": "6baff3e4e3aca45d2879a6b26369316430f8756d85319898c64c69019036ab61",
+        "signature": "6baff3e4e3aca45d2879a6b26369316430f8756d85319898c64c69019036ab61",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/coreutils/lib/text.d.ts": {
+        "version": "7efd9303320cf186211b14e1723172a2bc15378c0d95e49990f31be5d2f271d4",
+        "signature": "7efd9303320cf186211b14e1723172a2bc15378c0d95e49990f31be5d2f271d4",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@jupyterlab/coreutils/lib/time.d.ts": {
+        "version": "315dfd130e525ffa1934e769dc2266bafb35d021951a7845eb145089501ed86d",
+        "signature": "315dfd130e525ffa1934e769dc2266bafb35d021951a7845eb145089501ed86d",
+        "affectsGlobalScope": false
+      },
       "./node_modules/@jupyterlab/coreutils/lib/url.d.ts": {
         "version": "544eca475389fa55c49cac94d17a1f0e2286ea1ba0eb6599f28a513c86b04b10",
         "signature": "544eca475389fa55c49cac94d17a1f0e2286ea1ba0eb6599f28a513c86b04b10",
@@ -304,11 +589,6 @@
       "./node_modules/@jupyterlab/services/lib/config/index.d.ts": {
         "version": "41bd5decb99be607b760e0fcec9bccb318b0db4e32fa4771d07fdeffca120552",
         "signature": "41bd5decb99be607b760e0fcec9bccb318b0db4e32fa4771d07fdeffca120552",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/messaging/types/index.d.ts": {
-        "version": "cac40d24651330bd29ebcf835dc9014a8d9ce02219503fb1dd880ffd27d71b3b",
-        "signature": "cac40d24651330bd29ebcf835dc9014a8d9ce02219503fb1dd880ffd27d71b3b",
         "affectsGlobalScope": false
       },
       "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/observables/lib/observablemap.d.ts": {
@@ -456,46 +736,6 @@
         "signature": "0214c4398c638c72f77a78bc20c16fb8fab08d9cfe2bdfcd67f0baeafcc5b02b",
         "affectsGlobalScope": false
       },
-      "./node_modules/@lumino/virtualdom/types/index.d.ts": {
-        "version": "44a8be96842899b8250784c2f87eea9f7e084931a4478baf6cf4109560b0533a",
-        "signature": "44a8be96842899b8250784c2f87eea9f7e084931a4478baf6cf4109560b0533a",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/commands/types/index.d.ts": {
-        "version": "7506970552ee6175b21032f115affb5f91bf41fc24f7d8310e1a21d49b636e49",
-        "signature": "7506970552ee6175b21032f115affb5f91bf41fc24f7d8310e1a21d49b636e49",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@jupyterlab/statedb/lib/interfaces.d.ts": {
-        "version": "9bfdb958a6b460d0c0c0f2781dece557cd20698820f0d4e644690dc23bc05cd9",
-        "signature": "9bfdb958a6b460d0c0c0f2781dece557cd20698820f0d4e644690dc23bc05cd9",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@jupyterlab/statedb/lib/dataconnector.d.ts": {
-        "version": "bd969829f3805c917933ef812d4cabe2c045aff801859f2c5166eb8d56aea4eb",
-        "signature": "bd969829f3805c917933ef812d4cabe2c045aff801859f2c5166eb8d56aea4eb",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@jupyterlab/statedb/lib/restorablepool.d.ts": {
-        "version": "4c21323d9575649908d578c403dac9a3f240e839c5e0f3a7422d6bdea0d596f8",
-        "signature": "4c21323d9575649908d578c403dac9a3f240e839c5e0f3a7422d6bdea0d596f8",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@jupyterlab/statedb/lib/tokens.d.ts": {
-        "version": "2b793820a0e7d5fc41a8e3b7361a9bbb61538ccd997b3e324311dd100828830f",
-        "signature": "2b793820a0e7d5fc41a8e3b7361a9bbb61538ccd997b3e324311dd100828830f",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@jupyterlab/statedb/lib/statedb.d.ts": {
-        "version": "f8c57de65d7a1c151041621bf9ed1cc3da20ffb5bd004182e4e04dbbaa21e41e",
-        "signature": "f8c57de65d7a1c151041621bf9ed1cc3da20ffb5bd004182e4e04dbbaa21e41e",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@jupyterlab/statedb/lib/index.d.ts": {
-        "version": "ea3d38e208051abbe4045b494f6988e326a6f41d28f06a4e6fc097f9f4b51581",
-        "signature": "ea3d38e208051abbe4045b494f6988e326a6f41d28f06a4e6fc097f9f4b51581",
-        "affectsGlobalScope": false
-      },
       "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/settingregistry/lib/tokens.d.ts": {
         "version": "7245409212bcb5f3067cc961cc52dd924c672e6d4af5ef2e82bf5d64ab3f8a1b",
         "signature": "7245409212bcb5f3067cc961cc52dd924c672e6d4af5ef2e82bf5d64ab3f8a1b",
@@ -556,6 +796,11 @@
         "signature": "ce2d86c1b84d1415ed12503b298a6619332f1f391cf85f9925036a9c51742b3a",
         "affectsGlobalScope": false
       },
+      "./src/grid.ts": {
+        "version": "9c3919e6872c27f961d15b3902f3b4e27e10cf93f97d9adea35ceaec1f7e5425",
+        "signature": "445c00c5e8e84994edd8c6b415f6218f1d2686d0549523106d6d7dcbffdd12a3",
+        "affectsGlobalScope": false
+      },
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/tokens.d.ts": {
         "version": "ab6e7d1ca38e1b07c80f85895ca12382361bbfb6bb6611ca92a629692d51a590",
         "signature": "ab6e7d1ca38e1b07c80f85895ca12382361bbfb6bb6611ca92a629692d51a590",
@@ -599,131 +844,6 @@
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/clipboard.d.ts": {
         "version": "b9a2b4d2c1040298a3940b1f904553904336c6618bd87aaefa9e170b0b9331e9",
         "signature": "b9a2b4d2c1040298a3940b1f904553904336c6618bd87aaefa9e170b0b9331e9",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/boxengine.d.ts": {
-        "version": "6ce99f2c6e7c79a0b467e93cc607909fdeea4075ac24b2ea26df81c756c91197",
-        "signature": "6ce99f2c6e7c79a0b467e93cc607909fdeea4075ac24b2ea26df81c756c91197",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/title.d.ts": {
-        "version": "069430905191c1c7d58b608084a53b30584aa0c8a60134787578161ec8cafc72",
-        "signature": "069430905191c1c7d58b608084a53b30584aa0c8a60134787578161ec8cafc72",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/widget.d.ts": {
-        "version": "813737a8cd7bd632b12d427e288818157c5dd79beadcd7930c55aeb7ff75668e",
-        "signature": "813737a8cd7bd632b12d427e288818157c5dd79beadcd7930c55aeb7ff75668e",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/layout.d.ts": {
-        "version": "9606217cee9da6af32701c4a4ec62c5e1c08a8c81e9b40444bd02007981f35ad",
-        "signature": "9606217cee9da6af32701c4a4ec62c5e1c08a8c81e9b40444bd02007981f35ad",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/panellayout.d.ts": {
-        "version": "b6fe9902db09a08fb5816c2644d47b21b48763a6493d1f2080dcc8f97f63ffd5",
-        "signature": "b6fe9902db09a08fb5816c2644d47b21b48763a6493d1f2080dcc8f97f63ffd5",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/boxlayout.d.ts": {
-        "version": "094bc98f1966930b9b31f714ff4689cc2282348d2ac06614d2dfa3e3a0dd2bee",
-        "signature": "094bc98f1966930b9b31f714ff4689cc2282348d2ac06614d2dfa3e3a0dd2bee",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/panel.d.ts": {
-        "version": "4ea4e4aeb7cc473d641ec53cc7a05324ff1c528e452e1a0f5949a245911d4775",
-        "signature": "4ea4e4aeb7cc473d641ec53cc7a05324ff1c528e452e1a0f5949a245911d4775",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/boxpanel.d.ts": {
-        "version": "eb0acd32fc29c07e864c737a4811b71159e03833b36febb85f7e47259d87e135",
-        "signature": "eb0acd32fc29c07e864c737a4811b71159e03833b36febb85f7e47259d87e135",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/commandpalette.d.ts": {
-        "version": "05d9a8f0c106e662d8dfea3d5fdda3d736b5b01cf07504df026ebdd5b0a6777a",
-        "signature": "05d9a8f0c106e662d8dfea3d5fdda3d736b5b01cf07504df026ebdd5b0a6777a",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/menu.d.ts": {
-        "version": "a84fdd5325d4dc7e2adff61b951529ae6e168edd476c90e7003e959d5398a8f8",
-        "signature": "a84fdd5325d4dc7e2adff61b951529ae6e168edd476c90e7003e959d5398a8f8",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/contextmenu.d.ts": {
-        "version": "0408afb474542f58f54367587274e5363d622293e7610e7b811242a00ae4d2fe",
-        "signature": "0408afb474542f58f54367587274e5363d622293e7610e7b811242a00ae4d2fe",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/tabbar.d.ts": {
-        "version": "8752ebc7aa2662b0e669ca430dbf6828f1a406f45fb43b376359a7f7be68b270",
-        "signature": "8752ebc7aa2662b0e669ca430dbf6828f1a406f45fb43b376359a7f7be68b270",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/docklayout.d.ts": {
-        "version": "7f844465fd87097c35cf3cb13cc77e28c8e7429eab6750c4a49500125b6e48b2",
-        "signature": "7f844465fd87097c35cf3cb13cc77e28c8e7429eab6750c4a49500125b6e48b2",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/dockpanel.d.ts": {
-        "version": "cac95c328a04ebcce9b6ff3afb8d64d6d6c0964e99e0542ec7529784d8f75dc8",
-        "signature": "cac95c328a04ebcce9b6ff3afb8d64d6d6c0964e99e0542ec7529784d8f75dc8",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/focustracker.d.ts": {
-        "version": "a7c7b25084276be11aa983dbf29f39892db6c521b85433f598717921bf64d08e",
-        "signature": "a7c7b25084276be11aa983dbf29f39892db6c521b85433f598717921bf64d08e",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/gridlayout.d.ts": {
-        "version": "9d3fb450742b3f5c5f459177e70fa3c4c4ab52d0b4215be87cfcdf5fc8685ad2",
-        "signature": "9d3fb450742b3f5c5f459177e70fa3c4c4ab52d0b4215be87cfcdf5fc8685ad2",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/menubar.d.ts": {
-        "version": "0676ad817bf1b4c310e58ce87e32fd9fa6f9229c6a2a6b5d5f7e92b09b7bfa77",
-        "signature": "0676ad817bf1b4c310e58ce87e32fd9fa6f9229c6a2a6b5d5f7e92b09b7bfa77",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/scrollbar.d.ts": {
-        "version": "ff8fce615e42a7a40d34fd1110488663bc010469e7cd3d21df8ddda06f6ebd95",
-        "signature": "ff8fce615e42a7a40d34fd1110488663bc010469e7cd3d21df8ddda06f6ebd95",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/singletonlayout.d.ts": {
-        "version": "cb114e95d686eadc19feda14f7ae0c497fd060415cf669d4062447ef22b54e93",
-        "signature": "cb114e95d686eadc19feda14f7ae0c497fd060415cf669d4062447ef22b54e93",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/splitlayout.d.ts": {
-        "version": "115b150e7d81fb2e80d204b7f1082c13fd9650195da846a74f6f2b43b022579e",
-        "signature": "115b150e7d81fb2e80d204b7f1082c13fd9650195da846a74f6f2b43b022579e",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/splitpanel.d.ts": {
-        "version": "bd5604d87894ac046a5f017c1fd820f15fcf70d58ac7db47e537205cf5a9f80d",
-        "signature": "bd5604d87894ac046a5f017c1fd820f15fcf70d58ac7db47e537205cf5a9f80d",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/stackedlayout.d.ts": {
-        "version": "c7e1800b0e4e0914d2109b02cc4efa98c3fb79acb98f6a9a0dd5c1311576a42f",
-        "signature": "c7e1800b0e4e0914d2109b02cc4efa98c3fb79acb98f6a9a0dd5c1311576a42f",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/stackedpanel.d.ts": {
-        "version": "c94759a4b4d2f1044f2b03f3057319194739841524d22aa73b13e556a99bef5c",
-        "signature": "c94759a4b4d2f1044f2b03f3057319194739841524d22aa73b13e556a99bef5c",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/tabpanel.d.ts": {
-        "version": "887ef5e98f4b329f3ddf17864d45a9f2ee82608aa43666f95863b690e261a1ee",
-        "signature": "887ef5e98f4b329f3ddf17864d45a9f2ee82608aa43666f95863b690e261a1ee",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/widgets/types/index.d.ts": {
-        "version": "3575fd6e7b41c7b983d39ae80434267391f78d28b48a8af78f9f26e4535de01b",
-        "signature": "3575fd6e7b41c7b983d39ae80434267391f78d28b48a8af78f9f26e4535de01b",
         "affectsGlobalScope": false
       },
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/collapse.d.ts": {
@@ -2376,118 +2496,8 @@
         "signature": "010d846d1bc4f8d78e82e6075dbe1c9c1028cad3d8e542ed2cae0ebee05db156",
         "affectsGlobalScope": false
       },
-      "./node_modules/@jupyterlab/translation/lib/tokens.d.ts": {
-        "version": "ab6e7d1ca38e1b07c80f85895ca12382361bbfb6bb6611ca92a629692d51a590",
-        "signature": "ab6e7d1ca38e1b07c80f85895ca12382361bbfb6bb6611ca92a629692d51a590",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@jupyterlab/translation/lib/base.d.ts": {
-        "version": "7e80cbd62318016cfedfd4ccb53f930b4abe7f4b6bc4673fd8ec44f9de6243e2",
-        "signature": "7e80cbd62318016cfedfd4ccb53f930b4abe7f4b6bc4673fd8ec44f9de6243e2",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@jupyterlab/translation/lib/gettext.d.ts": {
-        "version": "176a56f3db4873d126f7f242c4538e0bc3866a0f58ca1acbdaf8bcfd331c4db3",
-        "signature": "176a56f3db4873d126f7f242c4538e0bc3866a0f58ca1acbdaf8bcfd331c4db3",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@jupyterlab/translation/lib/manager.d.ts": {
-        "version": "31801ba2e3cd683c5a84ee3054a697a48be477aeeb7300eb1bd3b50cf7472b00",
-        "signature": "31801ba2e3cd683c5a84ee3054a697a48be477aeeb7300eb1bd3b50cf7472b00",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@jupyterlab/translation/lib/server.d.ts": {
-        "version": "313fb1cdbefa46cf2103c004b9f1d53c96a13ef17576c65439945d581442d73d",
-        "signature": "313fb1cdbefa46cf2103c004b9f1d53c96a13ef17576c65439945d581442d73d",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@jupyterlab/translation/lib/index.d.ts": {
-        "version": "66d4d6573c40ab094ecb354ea935809de64467b269d2acb170e8eace206f1c04",
-        "signature": "66d4d6573c40ab094ecb354ea935809de64467b269d2acb170e8eace206f1c04",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/datamodel.d.ts": {
-        "version": "6d624e60cc9bef0d42b1752d175a6786ee4063348791667d3758225e6cba9f75",
-        "signature": "6d624e60cc9bef0d42b1752d175a6786ee4063348791667d3758225e6cba9f75",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/graphicscontext.d.ts": {
-        "version": "81c74b3df537867fb68ea9734770225b10701bcd61367e5cb1fd7cc439d368e2",
-        "signature": "81c74b3df537867fb68ea9734770225b10701bcd61367e5cb1fd7cc439d368e2",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/cellrenderer.d.ts": {
-        "version": "2507e0609fda94106c7c465000c33fd9054fb0603b162d4210f325877cda83ff",
-        "signature": "2507e0609fda94106c7c465000c33fd9054fb0603b162d4210f325877cda83ff",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/renderermap.d.ts": {
-        "version": "6171124988e8187f6a9496a90d27d991b1926bc4aeb274c055b8db7da817da03",
-        "signature": "6171124988e8187f6a9496a90d27d991b1926bc4aeb274c055b8db7da817da03",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/sectionlist.d.ts": {
-        "version": "14b1d8b51ab2e6dc571fb38e1955ef6866ee1c734630db676c9c5b3a0238d577",
-        "signature": "14b1d8b51ab2e6dc571fb38e1955ef6866ee1c734630db676c9c5b3a0238d577",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/selectionmodel.d.ts": {
-        "version": "36e32d173726dc79ba8a3b78f8f113a123e91e5ab26ef97790c787e950e8a976",
-        "signature": "36e32d173726dc79ba8a3b78f8f113a123e91e5ab26ef97790c787e950e8a976",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/notification.d.ts": {
-        "version": "299228e025ba7c849473b9e3ff14d549244dd3c5bd32eeb60dc93a3bf7a53bee",
-        "signature": "299228e025ba7c849473b9e3ff14d549244dd3c5bd32eeb60dc93a3bf7a53bee",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/celleditor.d.ts": {
-        "version": "b8f03228a4f9581dce437c89e29cc8d8f15107b3ff0205c00086d1c881ce3ef8",
-        "signature": "b8f03228a4f9581dce437c89e29cc8d8f15107b3ff0205c00086d1c881ce3ef8",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/celleditorcontroller.d.ts": {
-        "version": "591c6dd68a3bd72ce4b17caa4eadf1b73158f01918cac8dc57b2bb840286d1b4",
-        "signature": "591c6dd68a3bd72ce4b17caa4eadf1b73158f01918cac8dc57b2bb840286d1b4",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/datagrid.d.ts": {
-        "version": "726041c4dd8772bd59dc523ba47f4f3540fa720e88c8e025eb073815a98b42c4",
-        "signature": "726041c4dd8772bd59dc523ba47f4f3540fa720e88c8e025eb073815a98b42c4",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/basickeyhandler.d.ts": {
-        "version": "47c8c15c6f41592cc837c5a2dc90507ea68b211a5b090656d3c145f88a662ee8",
-        "signature": "47c8c15c6f41592cc837c5a2dc90507ea68b211a5b090656d3c145f88a662ee8",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/basicmousehandler.d.ts": {
-        "version": "aae754b014fd52fe12bc8c1337707c6e05dbafe111fb438cdc7e536e54ab2b39",
-        "signature": "aae754b014fd52fe12bc8c1337707c6e05dbafe111fb438cdc7e536e54ab2b39",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/basicselectionmodel.d.ts": {
-        "version": "1e8305b2e3e5c6288174258dc7c543ff115445e3d766083b9d6a99600c9554a3",
-        "signature": "1e8305b2e3e5c6288174258dc7c543ff115445e3d766083b9d6a99600c9554a3",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/jsonmodel.d.ts": {
-        "version": "db912a4c42a0f886ede1f73343b60bd192da0efc25985c4e3090fddec636d3b3",
-        "signature": "db912a4c42a0f886ede1f73343b60bd192da0efc25985c4e3090fddec636d3b3",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/textrenderer.d.ts": {
-        "version": "53c7fe7b949f7de9ed0b252a9944f0abbee9c0a348e300b22f00907e28032314",
-        "signature": "53c7fe7b949f7de9ed0b252a9944f0abbee9c0a348e300b22f00907e28032314",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@lumino/datagrid/types/index.d.ts": {
-        "version": "05f28d1617a601f91efeb4ed755eea2e0aea10194cbec584ac5779fd1e7ab1a8",
-        "signature": "05f28d1617a601f91efeb4ed755eea2e0aea10194cbec584ac5779fd1e7ab1a8",
-        "affectsGlobalScope": false
-      },
       "./src/index.ts": {
-        "version": "2c48b22e3904ae0e467d357dd580b76da2b196c2f3b3b9debe46f4db510c691e",
+        "version": "45de502a482d5873aec7c9f3190dbbf827fdfad0c14fe43b677991b43c8cd163",
         "signature": "826ccd8b8c156dff406d5092da145d457a8e53ca677459aa26abfae17e1a506a",
         "affectsGlobalScope": false
       }
@@ -4835,6 +4845,13 @@
       "./node_modules/typestyle/lib/types.d.ts": [
         "./node_modules/typestyle/node_modules/csstype/index.d.ts"
       ],
+      "./src/grid.ts": [
+        "./node_modules/@jupyterlab/translation/lib/index.d.ts",
+        "./node_modules/@lumino/datagrid/types/index.d.ts",
+        "./node_modules/@lumino/widgets/types/index.d.ts",
+        "./src/database.ts",
+        "./src/handler.ts"
+      ],
       "./src/handler.ts": [
         "./node_modules/@jupyterlab/coreutils/lib/index.d.ts",
         "./node_modules/@jupyterlab/services/lib/index.d.ts"
@@ -4844,8 +4861,9 @@
         "./node_modules/@jupyterlab/apputils/lib/index.d.ts",
         "./node_modules/@jupyterlab/mainmenu/lib/index.d.ts",
         "./node_modules/@jupyterlab/translation/lib/index.d.ts",
-        "./node_modules/@lumino/datagrid/types/index.d.ts",
         "./node_modules/@lumino/widgets/types/index.d.ts",
+        "./src/database.ts",
+        "./src/grid.ts",
         "./src/handler.ts"
       ]
     },
@@ -7170,6 +7188,12 @@
       "./node_modules/typestyle/lib/types.d.ts": [
         "./node_modules/typestyle/node_modules/csstype/index.d.ts"
       ],
+      "./src/grid.ts": [
+        "./node_modules/@jupyterlab/translation/lib/index.d.ts",
+        "./node_modules/@lumino/datagrid/types/index.d.ts",
+        "./node_modules/@lumino/widgets/types/index.d.ts",
+        "./src/database.ts"
+      ],
       "./src/index.ts": [
         "./node_modules/@jupyterlab/application/lib/index.d.ts"
       ]
@@ -7671,6 +7695,8 @@
       "./node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
       "./node_modules/typestyle/lib/types.d.ts",
       "./node_modules/typestyle/node_modules/csstype/index.d.ts",
+      "./src/database.ts",
+      "./src/grid.ts",
       "./src/handler.ts",
       "./src/index.ts"
     ]
