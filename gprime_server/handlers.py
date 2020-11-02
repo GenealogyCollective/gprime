@@ -1,3 +1,4 @@
+import pickle
 import json
 import re
 import os
@@ -11,9 +12,55 @@ if 'GRAMPS_RESOURCES' not in os.environ:
 
 from gramps.gen.dbstate import DbState
 from gramps.cli.clidbman import CLIDbManager
+from gramps.gen.db.utils import make_database, get_dbid_from_path
+from gramps.gen.lib import Person as GPerson
 
 DBSTATE = DbState()
 DBMAN = CLIDbManager(DBSTATE)
+
+class Person():
+    def get_rows(self, database):
+        return database.get_number_of_people()
+    def get_cols(self, database):
+        return 20 # database.get_number_of_people()
+    def get(self, database, row_span, col_span):
+        database.dbapi.execute(
+            "SELECT blob_data FROM person ORDER BY surname "
+            "LIMIT %s, %s;" % (row_span[0],
+                               row_span[1] - row_span[0]))
+        results = self.select_cols(database.dbapi.fetchall(), col_span)
+        return results
+    def select_cols(self, raw_data, col_span):
+        results = []
+        for row in raw_data:
+            data = pickle.loads(row[0])
+            obj = GPerson(data)
+            result_row = []
+            #for col in range(col_span[0], col_span[1] + 1):
+            #    result_row.append(obj.)
+            result_row.append(obj.gramps_id)
+            result_row.append(obj.gender)
+            result_row.append(obj.get_primary_name().get_surname())
+            result_row.append(obj.get_primary_name().get_first_name())
+            results.append(result_row)
+        return results
+
+table_map = {}
+table_map["person"] = Person()
+
+def get_database(dirpath):
+    dbid = get_dbid_from_path(dirpath)
+    database = make_database(dbid)
+    database.load(dirpath, None, update=False)
+    return database
+
+def get_table_shape(dirpath, table):
+    database = get_database(dirpath)
+    results = {}
+    results["rows"] = table_map[table].get_rows(database)
+    results["cols"] = table_map[table].get_cols(database)
+    database.close(update=False)
+    return results
 
 class Database():
     def __init__(self, name, dirpath, path_name, last,
@@ -63,9 +110,7 @@ class table_schema(APIHandler):
     @tornado.web.authenticated
     def post(self):
         input_data = self.get_json_body()
-        print(input_data["path_name"])
-        print(input_data["table"])
-        results = {"rows": 10000, "cols": 500}
+        results = get_table_shape(input_data["dirpath"], input_data["table"])
         self.finish(json.dumps(results))
 
 class table_page(APIHandler):
@@ -73,15 +118,12 @@ class table_page(APIHandler):
     def post(self):
         input_data = self.get_json_body()
         table = input_data["table"]
+        dirpath = input_data["dirpath"]
         row_span = input_data["row"]
         col_span = input_data["col"]
+        database = get_database(dirpath)
         print("getting", table, row_span, col_span)
-        results = []
-        for row in range(row_span[0], row_span[1] + 1):
-            data = []
-            for col in range(col_span[0], col_span[1] + 1):
-                data.append("[%s,%s]" % (row, col))
-            results.append(data)
+        results = table_map[table].get(database, row_span, col_span)
         self.finish(json.dumps(results))
 
 def setup_handlers(web_app):

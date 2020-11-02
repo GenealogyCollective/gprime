@@ -61,7 +61,7 @@ const extension: JupyterFrontEndPlugin<void> = {
 			const results = await get(
 			    "table_schema",
 			    {
-				"path_name": database.path_name,
+				"dirpath": database.dirpath,
 				"table": table.name,
 			    });
 			database.rows = results.rows;

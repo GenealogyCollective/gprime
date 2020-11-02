@@ -233,6 +233,7 @@ export class HugeDataModel extends DataModel {
 
 	const params = {
 	    table: this._table,
+	    dirpath: this._database.dirpath,
 	    row: [rowStart, rowStop],
 	    col: [colStart, colStop]
 	};
