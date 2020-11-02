@@ -45,12 +45,14 @@ const extension: JupyterFrontEndPlugin<void> = {
 	exampleMenu.title.label = 'gPrime';
 	let count = 0;
 	for (const row of results.data) {
+	    const database = new Database(row);
 	    const command = 'gprime:open' + count;
 	    commands.addCommand(command, {
-		label: row[0],
-		caption: row[0],
-		execute: () => {
-		    const widget = new DataGridPanel();
+		label: database.name,
+		caption: database.name,
+		execute: async () => {
+		    const widget = new DataGridPanel(translator, database);
+		    await widget.get_stats();
 		    shell.add(widget, 'main');
 		}
 	    });
@@ -65,47 +67,100 @@ const extension: JupyterFrontEndPlugin<void> = {
 
 export default extension;
 
+class Database {
+    constructor(object: Database) {
+	this.name = object.name;
+	this.dirpath = object.dirpath;
+	this.path_name = object.path_name;
+	this.last = object.last;
+	this.tval = object.tval;
+	this.enable = object.enable;
+	this.stock_id = object.stock_id;
+	this.backend_type = object.backend_type;
+    }
+    public name: string;
+    public dirpath: string;
+    public path_name: string;
+    public last: string;
+    public tval: number;
+    public enable: Boolean;
+    public stock_id: string;
+    public backend_type: string;
+}
+
 class DataGridPanel extends StackedPanel {
-  constructor(translator?: ITranslator) {
-    super();
-    this._translator = translator || nullTranslator;
-    this._trans = this._translator.load('jupyterlab');
+    constructor(translator: ITranslator, database: Database) {
+	super();
+	this._translator = translator || nullTranslator;
+	this._trans = this._translator.load('jupyterlab');
+	
+	this.addClass('jp-example-view');
+	this.id = 'datagrid-example';
+	this.title.label = this._trans.__(database.name)
+	this.title.closable = true;
+	
+	const model = new LargeDataModel(database);
+	const grid = new DataGrid();
+	grid.dataModel = model;
+	this.model = model;
+	this.addWidget(grid);
+    }
 
-    this.addClass('jp-example-view');
-    this.id = 'datagrid-example';
-    this.title.label = this._trans.__('Datagrid Example View');
-    this.title.closable = true;
-
-    const model = new LargeDataModel();
-    const grid = new DataGrid();
-    grid.dataModel = model;
-
-    this.addWidget(grid);
-  }
-
-  private _translator: ITranslator;
-  private _trans: TranslationBundle;
+    async get_stats() {
+	await this.model.get_stats();
+    }
+    
+    private _translator: ITranslator;
+    private _trans: TranslationBundle;
+    public model;
 }
 
 class LargeDataModel extends DataModel {
-  rowCount(region: DataModel.RowRegion): number {
-    return region === 'body' ? 1000000000000 : 2;
-  }
+    private _database: Database;
+    private _rows: number;
+    
+    constructor(database: Database) {
+	super();
+	this._database = database;
+	console.log("large data model:", this._database);
+    }
 
-  columnCount(region: DataModel.ColumnRegion): number {
-    return region === 'body' ? 1000000000000 : 3;
-  }
+    async get_stats() {
+	// Talk to the gprime_server and get stats about family tree database
+	let results = null;
+	const dataToSend = { "path_name": this._database.path_name };
+	try {
+	    results = await requestAPI<any>('get_family_tree_stats', {
+		body: JSON.stringify(dataToSend),
+		method: 'POST'
+	    });
+	    console.log(results);
+	} catch (err) {
+	    console.error(
+		`The gprime_server server extension appears to be missing.\n${err}`
+	    );
+	}
+	this._rows = results.rows;
+    }
 
-  data(region: DataModel.CellRegion, row: number, column: number): any {
-    if (region === 'row-header') {
-      return `R: ${row}, ${column}`;
+    rowCount(region: DataModel.RowRegion): number {
+	return region === 'body' ? 1000000000000 : 1;
     }
-    if (region === 'column-header') {
-      return `C: ${row}, ${column}`;
+    
+    columnCount(region: DataModel.ColumnRegion): number {
+	return region === 'body' ? 1000000000000 : 1;
     }
-    if (region === 'corner-header') {
-      return `N: ${row}, ${column}`;
+    
+    data(region: DataModel.CellRegion, row: number, column: number): any {
+	if (region === 'row-header') {
+	    return `SURNAME, Given name`;
+	}
+	if (region === 'column-header') {
+	    return `Column`;
+	}
+	if (region === 'corner-header') {
+	    return "";
+	}
+	return `Data [${row}, ${column}]`;
     }
-    return `(${row}, ${column})`;
-  }
 }

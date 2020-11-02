@@ -2487,7 +2487,7 @@
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "16ae9bcd7c7a505ba2dbabc990cf5e15e5c8c2f74f8e49aad578d13c299c5dc0",
+        "version": "ca0256e698b1db8412d3cb26e0cc65a3a5d613345b489abd0192237598f4c99d",
         "signature": "826ccd8b8c156dff406d5092da145d457a8e53ca677459aa26abfae17e1a506a",
         "affectsGlobalScope": false
       }
@@ -2503,7 +2503,7 @@
       "moduleResolution": 2,
       "noEmitOnError": true,
       "noImplicitAny": true,
-      "noUnusedLocals": true,
+      "noUnusedLocals": false,
       "preserveWatchOutput": true,
       "resolveJsonModule": true,
       "outDir": "./lib",
