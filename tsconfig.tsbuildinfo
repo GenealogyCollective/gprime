@@ -552,8 +552,8 @@
         "affectsGlobalScope": false
       },
       "./src/handler.ts": {
-        "version": "1cfae65240d77ff257a4f9057c7d655f2f3be74566de9999baadbd4caac2d4ab",
-        "signature": "daeb12a8a8880a6ee02b74817ba972e5542c3a3fc8daf2fbe258f9cb70bc9c9d",
+        "version": "5e75a51294e7309b71d794ca75e5d910ff0f1c4dce84253d61506c4b230d75c3",
+        "signature": "ce2d86c1b84d1415ed12503b298a6619332f1f391cf85f9925036a9c51742b3a",
         "affectsGlobalScope": false
       },
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/tokens.d.ts": {
@@ -2487,7 +2487,7 @@
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "e23870ae2562843e3985d4fece04d8cb3c49f82c0301322db5f649efce97faba",
+        "version": "2c48b22e3904ae0e467d357dd580b76da2b196c2f3b3b9debe46f4db510c691e",
         "signature": "826ccd8b8c156dff406d5092da145d457a8e53ca677459aa26abfae17e1a506a",
         "affectsGlobalScope": false
       }

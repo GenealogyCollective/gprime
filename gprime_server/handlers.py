@@ -49,7 +49,7 @@ class RouteHandler(APIHandler):
             "data": "This is /gprime_server/get_example endpoint!!"
         }))
 
-class FamilyTrees(APIHandler):
+class databases(APIHandler):
     @tornado.web.authenticated
     def get(self):
         data = []
@@ -59,21 +59,23 @@ class FamilyTrees(APIHandler):
             "data": data
         }))
 
-class FamilyTreeStats(APIHandler):
+class table_schema(APIHandler):
     @tornado.web.authenticated
     def post(self):
         input_data = self.get_json_body()
         print(input_data["path_name"])
-        results = {"rows": 42, "cols": 10}
+        print(input_data["table"])
+        results = {"rows": 100, "cols": 20}
         self.finish(json.dumps(results))
 
-class FamilyTreePage(APIHandler):
+class table_page(APIHandler):
     @tornado.web.authenticated
     def post(self):
         input_data = self.get_json_body()
         table = input_data["table"]
         start_pos = input_data["start_pos"]
         page_size = input_data["page_size"]
+        print("getting", table, start_pos, page_size)
         results = []
         for row in range(page_size):
             data = []
@@ -88,13 +90,13 @@ def setup_handlers(web_app):
 
     handlers = []
 
-    route_pattern = url_path_join(base_url, "gprime_server", "get_family_trees")
-    handlers += [(route_pattern, FamilyTrees)]
+    route_pattern = url_path_join(base_url, "gprime_server", "databases")
+    handlers += [(route_pattern, databases)]
 
-    route_pattern = url_path_join(base_url, "gprime_server", "get_family_tree_stats")
-    handlers += [(route_pattern, FamilyTreeStats)]
+    route_pattern = url_path_join(base_url, "gprime_server", "table_schema")
+    handlers += [(route_pattern, table_schema)]
 
-    route_pattern = url_path_join(base_url, "gprime_server", "get_family_tree_page")
-    handlers += [(route_pattern, FamilyTreePage)]
+    route_pattern = url_path_join(base_url, "gprime_server", "table_page")
+    handlers += [(route_pattern, table_page)]
 
     web_app.add_handlers(host_pattern, handlers)

@@ -3,7 +3,7 @@ import {
     JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 import { ICommandPalette } from '@jupyterlab/apputils';
-import { IMainMenu } from '@jupyterlab/mainmenu';
+import { JupyterLabMenu, IMainMenu } from '@jupyterlab/mainmenu';
 import {
     ITranslator,
     nullTranslator,
@@ -12,13 +12,15 @@ import {
 import { DataGrid, DataModel } from '@lumino/datagrid';
 import { Menu, StackedPanel } from '@lumino/widgets';
 
-import { requestAPI } from './handler';
+import { get } from './handler';
+
+const tables = ["person", "family", "event", "location"]
 
 /**
  * Initialization data for the extension1 extension.
  */
 const extension: JupyterFrontEndPlugin<void> = {
-    id: 'datagrid',
+    id: 'gprime',
     autoStart: true,
     requires: [ICommandPalette, IMainMenu, ITranslator],
     activate: async (
@@ -30,63 +32,44 @@ const extension: JupyterFrontEndPlugin<void> = {
 	const { commands, shell } = app;
 	//const trans = translator.load('jupyterlab');
 
-	// Get some info from the gprime_server:
-	let results = null;
-	try {
-	    results = await requestAPI<any>('get_family_trees');
-	    console.log(results);
-	} catch (err) {
-	    console.error(
-		`The gprime_server server extension appears to be missing.\n${err}`
-	    );
-	}
+	const results = await get("databases");
 
-	const exampleMenu = new Menu({commands});
-	exampleMenu.title.label = 'gPrime';
-	let count = 0;
+	const gprimeMenu = new JupyterLabMenu({commands});
+	gprimeMenu.menu.title.label = 'gPrime';
 	for (const row of results.data) {
 	    const database = new Database(row);
-	    const command = 'gprime:open' + count;
-	    commands.addCommand(command, {
-		label: database.name,
-		caption: database.name,
-		execute: async () => {
-		    await get_stats(database);
-		    const widget = new DataGridPanel(translator, database);
-		    shell.add(widget, 'main');
-		}
-	    });
-	    exampleMenu.addItem({ command });
-	    count++;
+	    const tableMenu = new Menu({commands});
+	    tableMenu.title.label = `${database.name}`;
+	    for (let table of tables) {
+		const command = `gprime:open-${database.name}-${table}`;
+		commands.addCommand(command, {
+		    label: `${table}`,
+		    caption: `${table}`,
+		    execute: async () => {
+			const results = await get(
+			    "table_schema",
+			    {
+				"path_name": database.path_name,
+				"table": table,
+			    });
+			database.rows = results.rows;
+			database.cols = results.cols;
+			const widget = new DataGridPanel(translator, database, table);
+			shell.add(widget, 'main');
+		    }
+		});
+		tableMenu.addItem({ command });
+	    }
 	    //palette.addItem({ command, category: 'Extension Examples' });
+	    gprimeMenu.addGroup([{type: 'submenu' as Menu.ItemType,
+				  submenu: tableMenu}])
 	}
-	mainMenu.addMenu(exampleMenu, { rank: 80 });
+	mainMenu.addMenu(gprimeMenu.menu);
     }
 
 };
 
 export default extension;
-
-async function get_stats(database: Database) {
-    // Talk to the gprime_server and get stats about family tree database
-    let results = null;
-    const dataToSend = { "path_name": database.path_name };
-    try {
-	results = await requestAPI<any>('get_family_tree_stats', {
-	    body: JSON.stringify(dataToSend),
-	    method: 'POST'
-	});
-	console.log(results);
-    } catch (err) {
-	console.error(
-	    `The gprime_server server extension appears to be missing.\n${err}`
-	);
-    }
-    database.rows = results.rows;
-    database.cols = results.cols;
-}
-
-
 
 class Database {
     constructor(object: Database) {
@@ -114,17 +97,17 @@ class Database {
 }
 
 class DataGridPanel extends StackedPanel {
-    constructor(translator: ITranslator, database: Database) {
+    constructor(translator: ITranslator, database: Database, table: string) {
 	super();
 	this._translator = translator || nullTranslator;
 	this._trans = this._translator.load('jupyterlab');
 
 	this.addClass('jp-example-view');
 	this.id = 'datagrid-example';
-	this.title.label = this._trans.__(database.name)
+	this.title.label = `${database.name}: ${table}`;
 	this.title.closable = true;
 
-	const model = new LargeDataModel(database);
+	const model = new LargeDataModel(database, table);
 	const grid = new DataGrid();
 	grid.dataModel = model;
 	this.addWidget(grid);
@@ -136,37 +119,26 @@ class DataGridPanel extends StackedPanel {
 
 class LargeDataModel extends DataModel {
     private _database: Database;
+    private _table: string;
     private _rows: number = 0;
     private _data: string[][] = [];
     private _timer: number;
 
-    constructor(database: Database) {
+    constructor(database: Database, table: string) {
 	super();
 	this._database = database;
-	console.log("large data model:", this._database);
+	this._table = table;
+	console.log("large data model:", this._database, this._table);
 	this._timer = setInterval(this._tick, 250);
     }
 
     private _tick = async () => {
 	if (this._rows < this._database.rows) {
-
-	    let results = null;
-	    const dataToSend = {
-		"table": "person",
+	    const results = await get("table_page", {
+		"table": this._table,
 		"start_pos": this._rows,
 		"page_size": 10
-	    };
-	    try {
-		results = await requestAPI<any>('get_family_tree_page', {
-		    body: JSON.stringify(dataToSend),
-		    method: 'POST'
-		});
-		console.log(results);
-	    } catch (err) {
-		console.error(
-		    `The gprime_server server extension appears to be missing.\n${err}`
-		);
-	    }
+	    });
 
 	    for (let row of results) {
 		this._data.push(row);

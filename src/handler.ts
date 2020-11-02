@@ -9,6 +9,7 @@ import { ServerConnection } from '@jupyterlab/services';
  * @param init Initial values for the request
  * @returns The response body interpreted as JSON
  */
+
 export async function requestAPI<T>(
   endPoint = '',
   init: RequestInit = {}
@@ -44,3 +45,23 @@ export async function requestAPI<T>(
 
   return data;
 }
+
+export async function get(end_point: string, payload: Object = null) {
+    let results: any = null;
+    try {
+	if (payload) {
+	    results = await requestAPI<any>(end_point, {
+		body: JSON.stringify(payload),
+		method: 'POST'
+	    });
+	} else {
+	    results = await requestAPI<any>(end_point);
+	}
+    } catch (err) {
+	console.error(
+	    `The gprime_server server extension appears to be missing.\n${err}`
+	);
+    }
+    return results;
+}
+
