@@ -65,7 +65,7 @@ class table_schema(APIHandler):
         input_data = self.get_json_body()
         print(input_data["path_name"])
         print(input_data["table"])
-        results = {"rows": 100, "cols": 20}
+        results = {"rows": 10000, "cols": 500}
         self.finish(json.dumps(results))
 
 class table_page(APIHandler):
@@ -73,14 +73,14 @@ class table_page(APIHandler):
     def post(self):
         input_data = self.get_json_body()
         table = input_data["table"]
-        start_pos = input_data["start_pos"]
-        page_size = input_data["page_size"]
-        print("getting", table, start_pos, page_size)
+        row_span = input_data["row"]
+        col_span = input_data["col"]
+        print("getting", table, row_span, col_span)
         results = []
-        for row in range(page_size):
+        for row in range(row_span[0], row_span[1] + 1):
             data = []
-            for col in range(10):
-                data.append("Data")
+            for col in range(col_span[0], col_span[1] + 1):
+                data.append("[%s,%s]" % (row, col))
             results.append(data)
         self.finish(json.dumps(results))
 

@@ -14,7 +14,7 @@ import {
 
 import { get } from './handler';
 import {Database, Table} from "./database";
-import {DataGridPanel, LargeDataModel} from "./grid";
+import {DataGridPanel} from "./grid";
 
 const tables = [
     new Table("person", "People"),
@@ -27,7 +27,7 @@ const tables = [
     new Table("media", "Media"),
     new Table("note", "Notes")
 ]
-		      
+
 /**
  * Initialization data for the extension1 extension.
  */

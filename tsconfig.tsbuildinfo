@@ -481,6 +481,11 @@
         "signature": "05f28d1617a601f91efeb4ed755eea2e0aea10194cbec584ac5779fd1e7ab1a8",
         "affectsGlobalScope": false
       },
+      "./src/dataset.ts": {
+        "version": "63d0864f2f6db52fe33903ea0874ff9e1145cc854d6dfccb6dfb23a308d0d65f",
+        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "affectsGlobalScope": false
+      },
       "./node_modules/@jupyterlab/statedb/lib/interfaces.d.ts": {
         "version": "9bfdb958a6b460d0c0c0f2781dece557cd20698820f0d4e644690dc23bc05cd9",
         "signature": "9bfdb958a6b460d0c0c0f2781dece557cd20698820f0d4e644690dc23bc05cd9",
@@ -796,9 +801,14 @@
         "signature": "ce2d86c1b84d1415ed12503b298a6619332f1f391cf85f9925036a9c51742b3a",
         "affectsGlobalScope": false
       },
+      "./src/slice.ts": {
+        "version": "33ee1e4bf1fe8731797c747b2e69db11f2e021095c9fe3af4e163c4d6a949aa2",
+        "signature": "837bba7e8cd6985d16e97019e0860dce6c6798a2bda527128825d4138e4afed0",
+        "affectsGlobalScope": false
+      },
       "./src/grid.ts": {
-        "version": "9c3919e6872c27f961d15b3902f3b4e27e10cf93f97d9adea35ceaec1f7e5425",
-        "signature": "445c00c5e8e84994edd8c6b415f6218f1d2686d0549523106d6d7dcbffdd12a3",
+        "version": "484bdc00f6ef03f4931b460e5b90a3e76204d488efb35e2af7534c5b9886b0bf",
+        "signature": "4f9045151d42850e4270a436b5df4cb3b76fe5f38861b2a8830f8def01450816",
         "affectsGlobalScope": false
       },
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/tokens.d.ts": {
@@ -2497,7 +2507,7 @@
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "45de502a482d5873aec7c9f3190dbbf827fdfad0c14fe43b677991b43c8cd163",
+        "version": "f94a05100e35b5834bfcee37f91a5199abecd297f5451c67cac589025eb26dfc",
         "signature": "826ccd8b8c156dff406d5092da145d457a8e53ca677459aa26abfae17e1a506a",
         "affectsGlobalScope": false
       }
@@ -4845,12 +4855,17 @@
       "./node_modules/typestyle/lib/types.d.ts": [
         "./node_modules/typestyle/node_modules/csstype/index.d.ts"
       ],
+      "./src/dataset.ts": [
+        "./node_modules/@lumino/datagrid/types/index.d.ts"
+      ],
       "./src/grid.ts": [
         "./node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@lumino/datagrid/types/index.d.ts",
+        "./node_modules/@lumino/signaling/types/index.d.ts",
         "./node_modules/@lumino/widgets/types/index.d.ts",
         "./src/database.ts",
-        "./src/handler.ts"
+        "./src/handler.ts",
+        "./src/slice.ts"
       ],
       "./src/handler.ts": [
         "./node_modules/@jupyterlab/coreutils/lib/index.d.ts",
@@ -5488,9 +5503,9 @@
         "./node_modules/@jupyterlab/application/lib/tokens.d.ts"
       ],
       "./node_modules/@jupyterlab/application/lib/frontend.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/index.d.ts",
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/docregistry/lib/index.d.ts",
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/ui-components/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/index.d.ts",
         "./node_modules/@jupyterlab/services/lib/index.d.ts",
         "./node_modules/@lumino/algorithm/types/index.d.ts",
         "./node_modules/@lumino/application/types/index.d.ts",
@@ -5519,7 +5534,7 @@
       ],
       "./node_modules/@jupyterlab/application/lib/layoutrestorer.d.ts": [
         "./node_modules/@jupyterlab/application/lib/shell.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/index.d.ts",
         "./node_modules/@jupyterlab/statedb/lib/index.d.ts",
         "./node_modules/@lumino/commands/types/index.d.ts",
         "./node_modules/@lumino/coreutils/types/index.d.ts",
@@ -5527,8 +5542,8 @@
       ],
       "./node_modules/@jupyterlab/application/lib/mimerenderers.d.ts": [
         "./node_modules/@jupyterlab/application/lib/index.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/index.d.ts",
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/docregistry/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/index.d.ts",
         "./node_modules/@jupyterlab/rendermime-interfaces/lib/index.d.ts",
         "./node_modules/@lumino/coreutils/types/index.d.ts"
       ],
@@ -5555,7 +5570,7 @@
         "./node_modules/@lumino/signaling/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/application/lib/tokens.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/services/lib/index.d.ts",
         "./node_modules/@lumino/commands/types/index.d.ts",
         "./node_modules/@lumino/coreutils/types/index.d.ts",
@@ -5595,28 +5610,28 @@
         "./node_modules/@lumino/widgets/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/index.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/clipboard.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/collapse.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/commandlinker.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/commandpalette.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/dialog.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/domutils.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/hoverbox.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/iframe.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/inputdialog.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/mainareawidget.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/printing.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/sanitizer.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/sessioncontext.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/spinner.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/splash.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/styling.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/thememanager.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/tokens.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/toolbar.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/vdom.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/widgettracker.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/windowresolver.d.ts"
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/clipboard.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/collapse.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/commandlinker.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/commandpalette.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/dialog.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/domutils.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/hoverbox.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/iframe.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/inputdialog.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/mainareawidget.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/printing.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/sanitizer.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/sessioncontext.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/spinner.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/splash.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/styling.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/thememanager.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/tokens.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/toolbar.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/vdom.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/widgettracker.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/windowresolver.d.ts"
       ],
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/inputdialog.d.ts": [
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/dialog.d.ts"
@@ -5693,8 +5708,8 @@
         "./node_modules/@lumino/coreutils/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/codeeditor/lib/editor.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/coreutils/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/observables/lib/index.d.ts",
         "./node_modules/@lumino/coreutils/types/index.d.ts",
         "./node_modules/@lumino/disposable/types/index.d.ts",
@@ -5713,7 +5728,7 @@
       ],
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/codeeditor/lib/jsoneditor.d.ts": [
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/codeeditor/lib/editor.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/observables/lib/index.d.ts",
         "./node_modules/@lumino/messaging/types/index.d.ts",
         "./node_modules/@lumino/widgets/types/index.d.ts"
@@ -5732,9 +5747,9 @@
         "./node_modules/@lumino/widgets/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/docregistry/lib/context.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/index.d.ts",
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/docregistry/lib/registry.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/rendermime-interfaces/lib/index.d.ts",
         "./node_modules/@jupyterlab/services/lib/index.d.ts",
         "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/observables/lib/index.d.ts",
@@ -5743,11 +5758,11 @@
         "./node_modules/@lumino/widgets/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/docregistry/lib/default.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/index.d.ts",
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/codeeditor/lib/index.d.ts",
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/docregistry/lib/index.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/coreutils/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/services/lib/index.d.ts",
         "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/observables/lib/index.d.ts",
         "./node_modules/@lumino/coreutils/types/index.d.ts",
@@ -5761,20 +5776,20 @@
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/docregistry/lib/registry.d.ts"
       ],
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/docregistry/lib/mimedocument.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/index.d.ts",
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/docregistry/lib/default.d.ts",
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/docregistry/lib/registry.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/rendermime/lib/index.d.ts",
         "./node_modules/@lumino/messaging/types/index.d.ts",
         "./node_modules/@lumino/widgets/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/docregistry/lib/registry.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/index.d.ts",
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/codeeditor/lib/index.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/ui-components/lib/index.d.ts",
         "./node_modules/@jupyterlab/coreutils/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/rendermime-interfaces/lib/index.d.ts",
         "./node_modules/@jupyterlab/services/lib/index.d.ts",
         "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/observables/lib/index.d.ts",
@@ -5803,11 +5818,11 @@
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/tokens.d.ts"
       ],
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/base.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/gettext.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/manager.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/server.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/tokens.d.ts"
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/base.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/gettext.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/manager.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/server.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/tokens.d.ts"
       ],
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/manager.d.ts": [
         "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/tokens.d.ts"
@@ -5964,7 +5979,7 @@
         "./node_modules/@jupyterlab/apputils/lib/splash.d.ts",
         "./node_modules/@jupyterlab/apputils/lib/tokens.d.ts",
         "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/coreutils/lib/index.d.ts",
-        "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/settingregistry/lib/index.d.ts",
+        "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/settingregistry/lib/index.d.ts",
         "./node_modules/@lumino/disposable/types/index.d.ts",
         "./node_modules/@lumino/signaling/types/index.d.ts",
         "./node_modules/@lumino/widgets/types/index.d.ts"
@@ -6196,8 +6211,8 @@
       ],
       "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/services/lib/setting/index.d.ts": [
         "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/services/lib/serverconnection.d.ts",
-        "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/statedb/lib/index.d.ts",
-        "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/settingregistry/lib/index.d.ts"
+        "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/settingregistry/lib/index.d.ts",
+        "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/statedb/lib/index.d.ts"
       ],
       "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/services/lib/terminal/index.d.ts": [
         "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/services/lib/terminal/manager.d.ts",
@@ -6230,8 +6245,8 @@
         "./node_modules/@lumino/coreutils/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/settingregistry/lib/index.d.ts": [
-        "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/settingregistry/lib/settingregistry.d.ts",
-        "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/settingregistry/lib/tokens.d.ts"
+        "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/settingregistry/lib/settingregistry.d.ts",
+        "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/settingregistry/lib/tokens.d.ts"
       ],
       "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/statedb/lib/dataconnector.d.ts": [
         "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/statedb/lib/interfaces.d.ts"
@@ -6462,16 +6477,16 @@
         "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/services/lib/workspace/index.d.ts"
       ],
       "./node_modules/@jupyterlab/rendermime-interfaces/lib/index.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@lumino/coreutils/types/index.d.ts",
         "./node_modules/@lumino/widgets/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/rendermime-interfaces/node_modules/@jupyterlab/translation/lib/index.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/base.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/gettext.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/manager.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/server.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/tokens.d.ts"
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/base.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/gettext.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/manager.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/server.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/tokens.d.ts"
       ],
       "./node_modules/@jupyterlab/rendermime/lib/attachmentmodel.d.ts": [
         "./node_modules/@jupyterlab/rendermime-interfaces/lib/index.d.ts",
@@ -6505,8 +6520,8 @@
         "./node_modules/@lumino/signaling/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/rendermime/lib/registry.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/index.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/rendermime-interfaces/lib/index.d.ts",
         "./node_modules/@jupyterlab/rendermime/lib/mimemodel.d.ts",
         "./node_modules/@jupyterlab/rendermime/lib/tokens.d.ts",
@@ -6514,56 +6529,56 @@
         "./node_modules/@lumino/coreutils/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/rendermime/lib/renderers.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/index.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/rendermime-interfaces/lib/index.d.ts"
       ],
       "./node_modules/@jupyterlab/rendermime/lib/tokens.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/index.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/rendermime-interfaces/lib/index.d.ts",
         "./node_modules/@jupyterlab/rendermime/lib/mimemodel.d.ts",
         "./node_modules/@lumino/coreutils/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/rendermime/lib/widgets.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/index.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@jupyterlab/rendermime-interfaces/lib/index.d.ts",
         "./node_modules/@lumino/messaging/types/index.d.ts",
         "./node_modules/@lumino/widgets/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/rendermime/node_modules/@jupyterlab/apputils/lib/index.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/clipboard.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/collapse.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/commandlinker.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/commandpalette.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/dialog.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/domutils.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/hoverbox.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/iframe.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/inputdialog.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/mainareawidget.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/printing.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/sanitizer.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/sessioncontext.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/spinner.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/splash.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/styling.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/thememanager.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/tokens.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/toolbar.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/vdom.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/widgettracker.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/apputils/lib/windowresolver.d.ts"
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/clipboard.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/collapse.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/commandlinker.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/commandpalette.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/dialog.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/domutils.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/hoverbox.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/iframe.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/inputdialog.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/mainareawidget.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/printing.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/sanitizer.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/sessioncontext.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/spinner.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/splash.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/styling.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/thememanager.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/tokens.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/toolbar.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/vdom.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/widgettracker.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/apputils/lib/windowresolver.d.ts"
       ],
       "./node_modules/@jupyterlab/rendermime/node_modules/@jupyterlab/nbformat/lib/index.d.ts": [
         "./node_modules/@lumino/coreutils/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/rendermime/node_modules/@jupyterlab/translation/lib/index.d.ts": [
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/base.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/gettext.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/manager.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/server.d.ts",
-        "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/tokens.d.ts"
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/base.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/gettext.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/manager.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/server.d.ts",
+        "./node_modules/@jupyterlab/docregistry/node_modules/@jupyterlab/translation/lib/tokens.d.ts"
       ],
       "./node_modules/@jupyterlab/services/lib/basemanager.d.ts": [
         "./node_modules/@jupyterlab/services/lib/serverconnection.d.ts",
@@ -6696,8 +6711,8 @@
         "./node_modules/@lumino/signaling/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/services/lib/setting/index.d.ts": [
+        "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/settingregistry/lib/index.d.ts",
         "./node_modules/@jupyterlab/services/lib/serverconnection.d.ts",
-        "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/settingregistry/lib/index.d.ts",
         "./node_modules/@jupyterlab/statedb/lib/index.d.ts"
       ],
       "./node_modules/@jupyterlab/services/lib/terminal/index.d.ts": [
@@ -6775,8 +6790,8 @@
         "./node_modules/@lumino/coreutils/types/index.d.ts"
       ],
       "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/settingregistry/lib/index.d.ts": [
-        "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/settingregistry/lib/settingregistry.d.ts",
-        "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/settingregistry/lib/tokens.d.ts"
+        "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/settingregistry/lib/settingregistry.d.ts",
+        "./node_modules/@jupyterlab/apputils/node_modules/@jupyterlab/settingregistry/lib/tokens.d.ts"
       ],
       "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/settingregistry/lib/settingregistry.d.ts": [
         "./node_modules/@jupyterlab/services/node_modules/@jupyterlab/settingregistry/lib/tokens.d.ts",
@@ -7191,6 +7206,7 @@
       "./src/grid.ts": [
         "./node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@lumino/datagrid/types/index.d.ts",
+        "./node_modules/@lumino/signaling/types/index.d.ts",
         "./node_modules/@lumino/widgets/types/index.d.ts",
         "./src/database.ts"
       ],
@@ -7696,9 +7712,11 @@
       "./node_modules/typestyle/lib/types.d.ts",
       "./node_modules/typestyle/node_modules/csstype/index.d.ts",
       "./src/database.ts",
+      "./src/dataset.ts",
       "./src/grid.ts",
       "./src/handler.ts",
-      "./src/index.ts"
+      "./src/index.ts",
+      "./src/slice.ts"
     ]
   },
   "version": "4.0.5"

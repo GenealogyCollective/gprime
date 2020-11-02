@@ -1,5 +1,6 @@
 import { DataGrid, DataModel } from '@lumino/datagrid';
 import { StackedPanel } from '@lumino/widgets';
+import { Signal } from "@lumino/signaling";
 
 import {
     ITranslator,
@@ -7,8 +8,9 @@ import {
     TranslationBundle
 } from '@jupyterlab/translation';
 
-import {Database} from './database';
+import { Database } from './database';
 import { get } from './handler';
+import { ISlice, parseSlices } from "./slice";
 
 export class DataGridPanel extends StackedPanel {
     private _translator: ITranslator;
@@ -24,66 +26,240 @@ export class DataGridPanel extends StackedPanel {
 	this.title.label = `${database.name}: ${table}`;
 	this.title.closable = true;
 
-	const model = new LargeDataModel(database, table);
+	const model = new HugeDataModel(database, table);
 	const grid = new DataGrid();
 	grid.dataModel = model;
 	this.addWidget(grid);
     }
 }
 
-export class LargeDataModel extends DataModel {
+export class HugeDataModel extends DataModel {
     private _database: Database;
     private _table: string;
-    private _rows: number = 0;
-    private _data: string[][] = [];
-    private _timer: number;
+
+    private _slice: string = "";
+    private _colSlice: ISlice = { start: null, stop: null };
+    private _rowSlice: ISlice = { start: null, stop: null };
+
+    private _blocks: any = Object();
+    private _blockSize: number = 50;
+    private _colCount: number = 0;
+    private _rowCount: number = 0;
+
+    private _refreshed = new Signal<this, void>(this);
 
     constructor(database: Database, table: string) {
 	super();
 	this._database = database;
 	this._table = table;
-	console.log("large data model:", this._database, this._table);
-	this._timer = setInterval(this._tick, 250);
-    }
 
-    private _tick = async () => {
-	if (this._rows < this._database.rows) {
-	    const results = await get("table_page", {
-		"table": this._table,
-		"start_pos": this._rows,
-		"page_size": 10
-	    });
+	this._rowCount = database.rows;
+	this._colCount = database.cols;
 
-	    for (let row of results) {
-		this._data.push(row);
-	    }
-	    this.emitChanged({ type: 'rows-inserted', region: 'body',
-			       index: this._rows, span: results.length });
-	    this._rows += results.length;
-	} else {
-	    clearInterval(this._timer);
-	}
-    }
-
-    rowCount(region: DataModel.RowRegion): number {
-
-	return region === 'body' ? 0 : 1;
+	this.emitChanged({
+	    type: "rows-inserted",
+	    region: "body",
+	    index: 0,
+	    span: this._rowCount
+	});
+	this.emitChanged({
+	    type: "columns-inserted",
+	    region: "body",
+	    index: 0,
+	    span: this._colCount
+	});
     }
 
     columnCount(region: DataModel.ColumnRegion): number {
-	return region === 'body' ? this._database.cols : 1;
+	if (region === "body") {
+	    if (this.isColSlice()) {
+		return this.colSlice.stop - this.colSlice.start;
+	    } else {
+		return this._colCount;
+	    }
+	}
+
+	return 1;
     }
 
-    data(region: DataModel.CellRegion, row: number, column: number): any {
-	if (region === 'row-header') {
-	    return `SURNAME, Given name`;
+    rowCount(region: DataModel.RowRegion): number {
+	if (region === "body") {
+	    if (this.isRowSlice()) {
+		return this.rowSlice.stop - this.rowSlice.start;
+	    } else {
+		return this._rowCount;
+	    }
 	}
-	if (region === 'column-header') {
-	    return `Column ${column}`;
+
+	return 1;
+    }
+
+    data(region: DataModel.CellRegion, row: number, col: number): any {
+	// adjust row and col based on slice
+	if (this.isRowSlice()) {
+	    row += this._rowSlice.start;
 	}
-	if (region === 'corner-header') {
-	    return "";
+	if (this.isColSlice()) {
+	    col += this._colSlice.start;
 	}
-	return this._data[row][column];
+
+	if (region === "row-header") {
+	    return `${row}`;
+	}
+	if (region === "column-header") {
+	    return `${col}`;
+	}
+	if (region === "corner-header") {
+	    return null;
+	}
+	const relRow = row % this._blockSize;
+	const relCol = col % this._blockSize;
+	const rowBlock = (row - relRow) / this._blockSize;
+	const colBlock = (col - relCol) / this._blockSize;
+	if (this._blocks[rowBlock]) {
+	    const block = this._blocks[rowBlock][colBlock];
+	    if (block !== "busy") {
+		if (block) {
+		    // This data has already been loaded.
+		    return this._blocks[rowBlock][colBlock][relRow][relCol];
+		} else {
+		    // This data has not yet been loaded, load it.
+		    this._fetchBlock(rowBlock, colBlock);
+		}
+	    }
+	} else {
+	    // This data has not yet been loaded, load it.
+	    this._blocks[rowBlock] = Object();
+	    this._fetchBlock(rowBlock, colBlock);
+	}
+	return null;
+    }
+
+    refresh() {
+	const oldRowCount = this.rowCount("body");
+	const oldColCount = this.columnCount("body");
+
+	// changing the row/col slices will also change the result
+	// of the row/colCount methods
+	const slices = parseSlices(this._slice);
+	this._rowSlice = slices[0];
+	this._colSlice = slices[1];
+
+	this._blocks = Object();
+
+	this.emitChanged({
+	    type: "rows-removed",
+	    region: "body",
+	    index: 0,
+	    span: oldRowCount
+	});
+	this.emitChanged({
+	    type: "columns-removed",
+	    region: "body",
+	    index: 0,
+	    span: oldColCount
+	});
+
+	this.emitChanged({
+	    type: "rows-inserted",
+	    region: "body",
+	    index: 0,
+	    span: this.rowCount("body")
+	});
+	this.emitChanged({
+	    type: "columns-inserted",
+	    region: "body",
+	    index: 0,
+	    span: this.columnCount("body")
+	});
+
+	this.emitChanged({
+	    type: "model-reset"
+	});
+
+	this._refreshed.emit();
+    }
+
+    isRowSlice(): boolean {
+	return !(isNaN(this._rowSlice.start) && isNaN(this._rowSlice.start));
+    }
+
+    isColSlice(): boolean {
+	return !(isNaN(this._colSlice.start) && isNaN(this._colSlice.start));
+    }
+
+    get rowSlice() {
+	return {
+	    start: this._rowSlice.start || 0,
+	    stop: this._rowSlice.stop || this._rowCount
+	};
+    }
+    get colSlice() {
+	return {
+	    start: this._colSlice.start || 0,
+	    stop: this._colSlice.stop || this._colCount
+	};
+    }
+
+    get slice(): string {
+	return this._slice;
+    }
+    set slice(s: string) {
+	this._slice = s;
+	this.refresh();
+    }
+
+    get refreshed() {
+	return this._refreshed;
+    }
+
+    /**
+     * fetch a data block. When data is received,
+     * the grid will be updated by emitChanged.
+     */
+    private _fetchBlock = (rowBlock: number, colBlock: number) => {
+	this._blocks[rowBlock][colBlock] = "busy";
+
+	const rowStart: number = rowBlock * this._blockSize;
+	const rowStop: number = Math.min(
+	    rowStart + this._blockSize,
+	    this._rowCount
+	);
+	const colStart: number = colBlock * this._blockSize;
+	const colStop: number = Math.min(
+	    colStart + this._blockSize,
+	    this._colCount
+	);
+
+	const params = {
+	    table: this._table,
+	    row: [rowStart, rowStop],
+	    col: [colStart, colStop]
+	};
+
+	this.dataFetch(params).then(data => {
+
+	    this._blocks[rowBlock][colBlock] = data;
+	    this.emitChanged({
+		type: "cells-changed",
+		region: "body",
+		row:
+		(rowBlock -
+		 (this.isRowSlice() ? this._rowSlice.start / this._blockSize : 0)) *
+		    this._blockSize, //rowBlock * this._blockSize,
+		column:
+		(colBlock -
+		 (this.isColSlice() ? this._colSlice.start / this._blockSize : 0)) *
+		    this._blockSize, //colBlock * this._blockSize,
+		rowSpan:
+		this._rowCount <= this._blockSize ? this._rowCount : this._blockSize,
+		columnSpan:
+		this._colCount <= this._blockSize ? this._colCount : this._blockSize
+	    });
+	});
+    };
+
+    dataFetch(params : any) {
+	return get("table_page", params);
     }
 }
