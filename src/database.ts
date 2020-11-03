@@ -1,7 +1,7 @@
 export class Table {
     public name: string;
     public proper: string;
-    
+
     constructor(name: string, proper: string) {
 	this.name = name;
 	this.proper = proper;
@@ -20,6 +20,8 @@ export class Database {
 	this.backend_type = object.backend_type;
 	this.rows = 0;
 	this.cols = 0;
+	this.column_labels = [];
+	this.column_widths = [];
     }
     public name: string;
     public dirpath: string;
@@ -31,5 +33,6 @@ export class Database {
     public backend_type: string;
     public rows: number;
     public cols: number;
+    public column_labels: string[];
+    public column_widths: number[];
 }
-

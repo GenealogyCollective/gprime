@@ -1,4 +1,9 @@
-import { DataGrid, DataModel } from '@lumino/datagrid';
+import {
+    DataGrid,
+    DataModel,
+    BasicKeyHandler,
+    BasicMouseHandler
+} from '@lumino/datagrid';
 import { StackedPanel } from '@lumino/widgets';
 import { Signal } from "@lumino/signaling";
 
@@ -27,7 +32,17 @@ export class DataGridPanel extends StackedPanel {
 	this.title.closable = true;
 
 	const model = new HugeDataModel(database, table);
-	const grid = new DataGrid();
+	const grid = new DataGrid(
+	    {defaultSizes: {columnWidth: 120,
+			    rowHeight: 20,
+			    rowHeaderWidth: 64,
+			    columnHeaderHeight: 20}});
+
+	for (let i=0; i < database.column_widths.length; i++) {
+	    grid.resizeColumn("body", i, database.column_widths[i]);
+	}
+	grid.keyHandler = new BasicKeyHandler();
+	grid.mouseHandler = new BasicMouseHandler();
 	grid.dataModel = model;
 	this.addWidget(grid);
     }
@@ -104,10 +119,10 @@ export class HugeDataModel extends DataModel {
 	}
 
 	if (region === "row-header") {
-	    return `${row}`;
+	    return `${row + 1}`
 	}
 	if (region === "column-header") {
-	    return `${col}`;
+	    return this._database.column_labels[col];
 	}
 	if (region === "corner-header") {
 	    return null;

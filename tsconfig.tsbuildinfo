@@ -122,8 +122,8 @@
         "affectsGlobalScope": false
       },
       "./src/database.ts": {
-        "version": "85b80c1b7e794b8df986014df42b9533aac96bb3937c978e16a6b533759530ad",
-        "signature": "f369e249990133f89db6e05e146146de7cc6ae43f31251db9427637022311d6b",
+        "version": "0d7dcaec2ed96d0acfaa6b1ea7d65d1322c38e9b84d674ff0c4298118ee94860",
+        "signature": "a298ad7e5def932065fb876e634a5ea3c7e957257f503593a8ff8dba55e410bc",
         "affectsGlobalScope": false
       },
       "./node_modules/@lumino/algorithm/types/array.d.ts": {
@@ -802,7 +802,7 @@
         "affectsGlobalScope": false
       },
       "./src/grid.ts": {
-        "version": "2558bc7409f605e1085d3f4d1cfc3d35898738226610d9ef2afcdb852acb1516",
+        "version": "59e56a044fe54a5202ed52731f6631660f704cd007181e49a7fa8516adb9870a",
         "signature": "4f9045151d42850e4270a436b5df4cb3b76fe5f38861b2a8830f8def01450816",
         "affectsGlobalScope": false
       },
@@ -2502,7 +2502,7 @@
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "b8bb1e6c6df2952a305893398dd0b0feba5da40e4647a5da5a94336e15c50462",
+        "version": "58de295268aad56a8dd2a2232d54c7c22c1cb56140a71ff03de770b196c516ad",
         "signature": "826ccd8b8c156dff406d5092da145d457a8e53ca677459aa26abfae17e1a506a",
         "affectsGlobalScope": false
       }

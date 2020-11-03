@@ -13,40 +13,71 @@ if 'GRAMPS_RESOURCES' not in os.environ:
 from gramps.gen.dbstate import DbState
 from gramps.cli.clidbman import CLIDbManager
 from gramps.gen.db.utils import make_database, get_dbid_from_path
-from gramps.gen.lib import Person as GPerson
+from gramps.gen.lib import Person
+from gramps.gen.simple import SimpleAccess
 
 DBSTATE = DbState()
 DBMAN = CLIDbManager(DBSTATE)
+GENDERS = ["Female", "Male", "Unknown"]
 
-class Person():
-    def get_rows(self, database):
-        return database.get_number_of_people()
-    def get_cols(self, database):
-        return 20 # database.get_number_of_people()
-    def get(self, database, row_span, col_span):
-        database.dbapi.execute(
+class gPerson():
+    def __init__(self, database):
+        self.database = database
+
+    def get_rows(self):
+        return self.database.get_number_of_people()
+
+    def get_cols(self):
+        return 15 # number of columns
+
+    def get_column_labels(self):
+        return ["ID", "Name", "Gender",
+                "Birth Date", "Birth Place",
+                "Death Date", "Death Place", "Spouse",
+                "Number of Parents", "Number of Marriages",
+                "Number of Children", "Number of Notes",
+                "Private", "Tags", "Last Changed"]
+
+    def get_column_widths(self):
+        return [50, 200, 100, 150, 200,
+                150, 200, 200, 50, 50, 50, 50, 50,
+                100, 150]
+
+    def get(self, row_span, col_span):
+        self.database.dbapi.execute(
             "SELECT blob_data FROM person ORDER BY surname "
             "LIMIT %s, %s;" % (row_span[0],
                                row_span[1] - row_span[0]))
-        results = self.select_cols(database.dbapi.fetchall(), col_span)
+        results = self.select_cols(self.database.dbapi.fetchall(), col_span)
         return results
+
     def select_cols(self, raw_data, col_span):
+        sa = SimpleAccess(self.database)
         results = []
         for row in raw_data:
             data = pickle.loads(row[0])
-            obj = GPerson(data)
+            obj = Person(data) # gramps person
             result_row = []
-            #for col in range(col_span[0], col_span[1] + 1):
-            #    result_row.append(obj.)
             result_row.append(obj.gramps_id)
-            result_row.append(obj.gender)
-            result_row.append(obj.get_primary_name().get_surname())
-            result_row.append(obj.get_primary_name().get_first_name())
+            result_row.append(sa.name(obj))
+            result_row.append(sa.gender(obj))
+            result_row.append(sa.birth_date(obj))
+            result_row.append(sa.birth_place(obj))
+            result_row.append(sa.death_date(obj))
+            result_row.append(sa.death_place(obj))
+            result_row.append(sa.name(sa.spouse(obj)))
+            result_row.append("num_parents")
+            result_row.append("num_marriages")
+            result_row.append("num_children")
+            result_row.append("num_notes")
+            result_row.append(str(obj.private))
+            result_row.append("tags")
+            result_row.append(str(obj.change))
             results.append(result_row)
         return results
 
 table_map = {}
-table_map["person"] = Person()
+table_map["person"] = gPerson
 
 def get_database(dirpath):
     dbid = get_dbid_from_path(dirpath)
@@ -56,9 +87,12 @@ def get_database(dirpath):
 
 def get_table_shape(dirpath, table):
     database = get_database(dirpath)
+    obj = table_map[table](database)
     results = {}
-    results["rows"] = table_map[table].get_rows(database)
-    results["cols"] = table_map[table].get_cols(database)
+    results["rows"] = obj.get_rows()
+    results["cols"] = obj.get_cols()
+    results["column_labels"] = obj.get_column_labels()
+    results["column_widths"] = obj.get_column_widths()
     database.close(update=False)
     return results
 
@@ -123,7 +157,8 @@ class table_page(APIHandler):
         col_span = input_data["col"]
         database = get_database(dirpath)
         print("getting", table, row_span, col_span)
-        results = table_map[table].get(database, row_span, col_span)
+        obj = table_map[table](database)
+        results = obj.get(row_span, col_span)
         self.finish(json.dumps(results))
 
 def setup_handlers(web_app):
