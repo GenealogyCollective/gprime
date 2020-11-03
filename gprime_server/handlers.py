@@ -1,6 +1,4 @@
-import pickle
 import json
-import re
 import os
 
 from jupyter_server.base.handlers import APIHandler
@@ -13,72 +11,11 @@ if 'GRAMPS_RESOURCES' not in os.environ:
 from gramps.cli.clidbman import CLIDbManager
 from gramps.gen.dbstate import DbState
 from gramps.gen.db.utils import make_database, get_dbid_from_path
-from gramps.gen.lib import Person
-from gramps.gen.simple import SimpleAccess
-from gramps.gen.datehandler import format_time
+
+from .tables import table_map
 
 DBSTATE = DbState()
 DBMAN = CLIDbManager(DBSTATE)
-GENDERS = ["Female", "Male", "Unknown"]
-
-class gPerson():
-    def __init__(self, database):
-        self.database = database
-
-    def get_rows(self):
-        return self.database.get_number_of_people()
-
-    def get_cols(self):
-        return 15 # number of columns
-
-    def get_column_labels(self):
-        return ["ID", "Name", "Gender",
-                "Birth Date", "Birth Place",
-                "Death Date", "Death Place", "Spouse",
-                "Number of Parents", "Number of Marriages",
-                "Number of Children", "Number of Notes",
-                "Private", "Tags", "Last Changed"]
-
-    def get_column_widths(self):
-        return [50, 200, 100, 150, 200,
-                150, 200, 200, 50, 50, 50, 50, 50,
-                100, 150]
-
-    def get(self, row_span, col_span):
-        self.database.dbapi.execute(
-            "SELECT blob_data FROM person ORDER BY surname "
-            "LIMIT %s, %s;" % (row_span[0],
-                               row_span[1] - row_span[0]))
-        results = self.select_cols(self.database.dbapi.fetchall(), col_span)
-        return results
-
-    def select_cols(self, raw_data, col_span):
-        sa = SimpleAccess(self.database)
-        results = []
-        for row in raw_data:
-            data = pickle.loads(row[0])
-            obj = Person(data) # gramps person
-            result_row = []
-            result_row.append(obj.gramps_id)
-            result_row.append(sa.name(obj))
-            result_row.append(sa.gender(obj))
-            result_row.append(sa.birth_date(obj))
-            result_row.append(sa.birth_place(obj))
-            result_row.append(sa.death_date(obj))
-            result_row.append(sa.death_place(obj))
-            result_row.append(sa.name(sa.spouse(obj)))
-            result_row.append("num_parents")
-            result_row.append("num_marriages")
-            result_row.append("num_children")
-            result_row.append("num_notes")
-            result_row.append(str(obj.private))
-            result_row.append("tags")
-            result_row.append(format_time(obj.change))
-            results.append(result_row)
-        return results
-
-table_map = {}
-table_map["person"] = gPerson
 
 def get_database(dirpath):
     dbid = get_dbid_from_path(dirpath)
@@ -86,14 +23,10 @@ def get_database(dirpath):
     database.load(dirpath, None, update=False)
     return database
 
-def get_table_shape(dirpath, table):
+def get_table_data(dirpath, table):
     database = get_database(dirpath)
     obj = table_map[table](database)
-    results = {}
-    results["rows"] = obj.get_rows()
-    results["cols"] = obj.get_cols()
-    results["column_labels"] = obj.get_column_labels()
-    results["column_widths"] = obj.get_column_widths()
+    results = obj.get_table_data()
     database.close(update=False)
     return results
 
@@ -141,11 +74,11 @@ class databases(APIHandler):
             "data": data
         }))
 
-class table_schema(APIHandler):
+class table_data(APIHandler):
     @tornado.web.authenticated
     def post(self):
         input_data = self.get_json_body()
-        results = get_table_shape(input_data["dirpath"], input_data["table"])
+        results = get_table_data(input_data["dirpath"], input_data["table"])
         self.finish(json.dumps(results))
 
 class table_page(APIHandler):
@@ -171,8 +104,8 @@ def setup_handlers(web_app):
     route_pattern = url_path_join(base_url, "gprime_server", "databases")
     handlers += [(route_pattern, databases)]
 
-    route_pattern = url_path_join(base_url, "gprime_server", "table_schema")
-    handlers += [(route_pattern, table_schema)]
+    route_pattern = url_path_join(base_url, "gprime_server", "table_data")
+    handlers += [(route_pattern, table_data)]
 
     route_pattern = url_path_join(base_url, "gprime_server", "table_page")
     handlers += [(route_pattern, table_page)]

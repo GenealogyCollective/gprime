@@ -59,7 +59,7 @@ const extension: JupyterFrontEndPlugin<void> = {
 		    caption: `Open ${table.name} table`,
 		    execute: async () => {
 			const results = await get(
-			    "table_schema",
+			    "table_data",
 			    {
 				"dirpath": database.dirpath,
 				"table": table.name,
