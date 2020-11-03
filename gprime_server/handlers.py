@@ -10,11 +10,12 @@ import tornado
 if 'GRAMPS_RESOURCES' not in os.environ:
     print("WARNING: GRAMPS_RESOURCES is not defined")
 
-from gramps.gen.dbstate import DbState
 from gramps.cli.clidbman import CLIDbManager
+from gramps.gen.dbstate import DbState
 from gramps.gen.db.utils import make_database, get_dbid_from_path
 from gramps.gen.lib import Person
 from gramps.gen.simple import SimpleAccess
+from gramps.gen.datehandler import format_time
 
 DBSTATE = DbState()
 DBMAN = CLIDbManager(DBSTATE)
@@ -72,7 +73,7 @@ class gPerson():
             result_row.append("num_notes")
             result_row.append(str(obj.private))
             result_row.append("tags")
-            result_row.append(str(obj.change))
+            result_row.append(format_time(obj.change))
             results.append(result_row)
         return results
 
