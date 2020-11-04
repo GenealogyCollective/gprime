@@ -2,7 +2,8 @@ import {
     DataGrid,
     DataModel,
     BasicKeyHandler,
-    BasicMouseHandler
+    BasicMouseHandler,
+    BasicSelectionModel
 } from '@lumino/datagrid';
 import { StackedPanel } from '@lumino/widgets';
 import { Signal } from "@lumino/signaling";
@@ -40,6 +41,7 @@ export class DataGridPanel extends StackedPanel {
 	grid.keyHandler = new BasicKeyHandler();
 	grid.mouseHandler = new BasicMouseHandler();
 	grid.dataModel = model;
+	grid.selectionModel = new BasicSelectionModel({dataModel: model});
 	this.addWidget(grid);
     }
 }

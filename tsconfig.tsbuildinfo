@@ -802,7 +802,7 @@
         "affectsGlobalScope": false
       },
       "./src/grid.ts": {
-        "version": "547aa3df5e7df7ff4a1276257c04e97c3c9aad9427347944d42be5285a6742e7",
+        "version": "e33e436c6697d29762abe4d91c197b753009e5431d27a6bafce69dc8642a23d3",
         "signature": "dcbae966639773bc5175ef6557ac889231c0ab7678b8cf3e12407c13ff478e66",
         "affectsGlobalScope": false
       },
