@@ -27,18 +27,13 @@ export class DataGridPanel extends StackedPanel {
 	this._trans = this._translator.load('jupyterlab');
 
 	this.addClass('gprime-view');
-	this.id = 'gprime-datagrid';
+	this.id = `gprime-datagrid-${table.name}`;
 	this.title.label = `${table.proper}`;
 	this.title.caption = `${database.name}: ${table.name}`;
 	this.title.closable = true;
 
 	const model = new HugeDataModel(database, table.name);
-	const grid = new DataGrid(
-	    {defaultSizes: {columnWidth: 120,
-			    rowHeight: 20,
-			    rowHeaderWidth: 64,
-			    columnHeaderHeight: 20}});
-
+	const grid = new DataGrid();
 	for (let i=0; i < database.column_widths.length; i++) {
 	    grid.resizeColumn("body", i, database.column_widths[i]);
 	}
