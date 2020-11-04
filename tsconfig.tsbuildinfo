@@ -801,9 +801,14 @@
         "signature": "837bba7e8cd6985d16e97019e0860dce6c6798a2bda527128825d4138e4afed0",
         "affectsGlobalScope": false
       },
+      "./src/grid_search.ts": {
+        "version": "803a7d87365dd8bcf8772c77d6ec4951ec1b0c2db4f7c14d606bd77fe1c65629",
+        "signature": "5615e8b5444c0e23a85aab739e40c8a0f1dcb1c15218855ff20d5d28f645a983",
+        "affectsGlobalScope": false
+      },
       "./src/grid.ts": {
-        "version": "e33e436c6697d29762abe4d91c197b753009e5431d27a6bafce69dc8642a23d3",
-        "signature": "dcbae966639773bc5175ef6557ac889231c0ab7678b8cf3e12407c13ff478e66",
+        "version": "6618f725f8285826950916d59e2aad7fe6eef351bf941e18067bb9eca6e9db13",
+        "signature": "71f53e3157ccd7ac2b61f6da6faa0929e89e259abc5e29b28485cb63e00600df",
         "affectsGlobalScope": false
       },
       "./node_modules/@jupyterlab/application/node_modules/@jupyterlab/translation/lib/tokens.d.ts": {
@@ -4856,8 +4861,13 @@
         "./node_modules/@lumino/signaling/types/index.d.ts",
         "./node_modules/@lumino/widgets/types/index.d.ts",
         "./src/database.ts",
+        "./src/grid_search.ts",
         "./src/handler.ts",
         "./src/slice.ts"
+      ],
+      "./src/grid_search.ts": [
+        "./node_modules/@lumino/datagrid/types/index.d.ts",
+        "./node_modules/@lumino/signaling/types/index.d.ts"
       ],
       "./src/handler.ts": [
         "./node_modules/@jupyterlab/coreutils/lib/index.d.ts",
@@ -7202,6 +7212,10 @@
         "./node_modules/@lumino/widgets/types/index.d.ts",
         "./src/database.ts"
       ],
+      "./src/grid_search.ts": [
+        "./node_modules/@lumino/datagrid/types/index.d.ts",
+        "./node_modules/@lumino/signaling/types/index.d.ts"
+      ],
       "./src/index.ts": [
         "./node_modules/@jupyterlab/application/lib/index.d.ts"
       ]
@@ -7705,6 +7719,7 @@
       "./node_modules/typestyle/node_modules/csstype/index.d.ts",
       "./src/database.ts",
       "./src/grid.ts",
+      "./src/grid_search.ts",
       "./src/handler.ts",
       "./src/index.ts",
       "./src/slice.ts"

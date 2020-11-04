@@ -3,7 +3,8 @@ import {
     DataModel,
     BasicKeyHandler,
     BasicMouseHandler,
-    BasicSelectionModel
+    BasicSelectionModel,
+    TextRenderer
 } from '@lumino/datagrid';
 import { StackedPanel } from '@lumino/widgets';
 import { Signal } from "@lumino/signaling";
@@ -17,10 +18,13 @@ import {
 import { Database, Table } from './database';
 import { get } from './handler';
 import { ISlice, parseSlices } from "./slice";
+import { GridSearchService } from "./grid_search";
 
 export class DataGridPanel extends StackedPanel {
     private _translator: ITranslator;
     private _trans: TranslationBundle;
+    private _grid: DataGrid;
+    private _searchService: GridSearchService;
 
     constructor(translator: ITranslator, database: Database, table: Table) {
 	super();
@@ -42,7 +46,38 @@ export class DataGridPanel extends StackedPanel {
 	grid.mouseHandler = new BasicMouseHandler();
 	grid.dataModel = model;
 	grid.selectionModel = new BasicSelectionModel({dataModel: model});
+
+	this._grid = grid;
+	this._searchService = new GridSearchService(grid);
+	this._searchService.changed.connect(this._updateRenderer, this);
+	
 	this.addWidget(grid);
+    }
+
+    get searchService(): GridSearchService {
+	return this._searchService;
+    }
+    
+    private _updateRenderer(): void {
+	//if (this._baseRenderer === null) {
+	return;
+	//}
+	/*
+	const rendererConfig = this._baseRenderer;
+	const renderer = new TextRenderer({
+	    textColor: rendererConfig.textColor,
+	    horizontalAlignment: rendererConfig.horizontalAlignment,
+	    backgroundColor: this._searchService.cellBackgroundColorRendererFunc(
+		rendererConfig
+	    )
+	});
+	this._grid.cellRenderers.update({
+	    body: renderer,
+	    'column-header': renderer,
+	    'corner-header': renderer,
+	    'row-header': renderer
+	});
+	*/
     }
 }
 
