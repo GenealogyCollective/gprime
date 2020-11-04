@@ -68,7 +68,7 @@ const extension: JupyterFrontEndPlugin<void> = {
 			database.cols = results.cols;
 			database.column_labels = results.column_labels;
 			database.column_widths = results.column_widths;
-			const widget = new DataGridPanel(translator, database, table.name);
+			const widget = new DataGridPanel(translator, database, table);
 			shell.add(widget, 'main');
 		    }
 		});

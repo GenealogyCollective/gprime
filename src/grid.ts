@@ -13,7 +13,7 @@ import {
     TranslationBundle
 } from '@jupyterlab/translation';
 
-import { Database } from './database';
+import { Database, Table } from './database';
 import { get } from './handler';
 import { ISlice, parseSlices } from "./slice";
 
@@ -21,17 +21,18 @@ export class DataGridPanel extends StackedPanel {
     private _translator: ITranslator;
     private _trans: TranslationBundle;
 
-    constructor(translator: ITranslator, database: Database, table: string) {
+    constructor(translator: ITranslator, database: Database, table: Table) {
 	super();
 	this._translator = translator || nullTranslator;
 	this._trans = this._translator.load('jupyterlab');
 
-	this.addClass('jp-example-view');
-	this.id = 'datagrid-example';
-	this.title.label = `${database.name}: ${table}`;
+	this.addClass('gprime-view');
+	this.id = 'gprime-datagrid';
+	this.title.label = `${table.proper}`;
+	this.title.caption = `${database.name}: ${table.name}`;
 	this.title.closable = true;
 
-	const model = new HugeDataModel(database, table);
+	const model = new HugeDataModel(database, table.name);
 	const grid = new DataGrid(
 	    {defaultSizes: {columnWidth: 120,
 			    rowHeight: 20,
