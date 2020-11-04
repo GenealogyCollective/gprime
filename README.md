@@ -1,18 +1,40 @@
-# gprime_server
+# gPrime
 
-![Github Actions Status](https://github.com/my_name/myextension/workflows/Build/badge.svg)
+![Github Actions Status](https://github.com/GenealogyCollective/gprime/workflows/Build/badge.svg)
 
-A JupyterLab extension.
+This is an open source genealogy project built on top of JupyterLab
+and Gramps. The goal is to make an excellent, modern, genealogy program
+that works on the web.
 
+![gPrime Screenshot](docs/gprime.png)
 
-This extension is composed of a Python package named `gprime_server`
-for the server extension and a NPM package named `gprime`
-for the frontend extension.
+gPrime uses Gramps for all of the underlying data structures, data bases,
+view, and model data. However, it will take advantage of Gramps sqlite
+database directly where it can for speed.
 
+gPrime is a JupyterLab extension. This extension is composed of a
+Python package named `gprime_server` for the server extension and a
+NPM package named `gprime` for the frontend extension.
+
+To use gPrime you will need:
+
+1. a working installation of [gramps](https://gramps-project.org/blog/)
+2. a working installation of JupyterLab 3.0
+
+First use Gramps to import or otherwise enter your genealogy
+data. Make sure you have your `GRAMPS_RESOURCES` environment variable
+defined.
+
+3. Install gprime from git
+
+```
+pip install git+https://github.com:GenealogyCollective/gprime
+```
 
 ## Requirements
 
 * JupyterLab >= 3.0
+* gramps >= 5.1
 
 ## Install
 
@@ -20,8 +42,7 @@ for the frontend extension.
 pip install gprime_server
 ```
 
-
-## Troubleshoot
+## Troubleshooting
 
 If you are seeing the frontend extension, but it is not working, check
 that the server extension is enabled:
