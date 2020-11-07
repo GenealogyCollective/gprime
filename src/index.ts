@@ -1,32 +1,17 @@
-import { Menu } from '@lumino/widgets';
-
 import {
     JupyterFrontEnd,
     JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 import { ICommandPalette } from '@jupyterlab/apputils';
-import { JupyterLabMenu, IMainMenu } from '@jupyterlab/mainmenu';
+import { ILauncher } from '@jupyterlab/launcher';
 import {
     ITranslator,
     nullTranslator,
     TranslationBundle
 } from '@jupyterlab/translation';
 
-import { get } from './handler';
 import {Database, Table} from "./database";
-import {DataGridPanel} from "./grid";
-
-const tables = [
-    new Table("person", "People"),
-    new Table("family", "Families"),
-    new Table("event", "Events"),
-    new Table("place", "Places"),
-    new Table("source", "Sources"),
-    new Table("citation", "Citations"),
-    new Table("repository", "Repositories"),
-    new Table("media", "Media"),
-    new Table("note", "Notes")
-]
+import { gPrimePanel } from './panel';
 
 /**
  * Initialization data for the extension1 extension.
@@ -34,54 +19,41 @@ const tables = [
 const extension: JupyterFrontEndPlugin<void> = {
     id: 'gprime',
     autoStart: true,
-    requires: [ICommandPalette, IMainMenu, ITranslator],
+    requires: [ICommandPalette, ITranslator, ILauncher],
     activate: async (
 	app: JupyterFrontEnd,
 	palette: ICommandPalette,
-	mainMenu: IMainMenu,
-	translator: ITranslator
+	translator: ITranslator,
+	launcher: ILauncher
     ) => {
 	const { commands, shell } = app;
-	//const trans = translator.load('jupyterlab');
+	const manager = app.serviceManager;
+	const trans = translator.load('jupyterlab');
 
-	const results = await get("databases");
-
-	const gprimeMenu = new JupyterLabMenu({commands});
-	gprimeMenu.menu.title.label = 'gPrime';
-	for (const row of results.data) {
-	    // Get the name here:
-	    const database_name = new Database(row).name;
-	    const tableMenu = new Menu({commands});
-	    tableMenu.title.label = `${database_name}`;
-	    for (let table of tables) {
-		const command = `gprime:open-${database_name}-${table.name}`;
-		commands.addCommand(command, {
-		    label: `${table.proper}`,
-		    caption: `Open ${table.name} table`,
-		    execute: async () => {
-			// Make sure grids don't share database instances:
-			const database = new Database(row);
-			const results = await get(
-			    "table_data",
-			    {
-				"dirpath": database.dirpath,
-				"table": table.name,
-			    });
-			database.rows = results.rows;
-			database.cols = results.cols;
-			database.column_labels = results.column_labels;
-			database.column_widths = results.column_widths;
-			const widget = new DataGridPanel(translator, database, table);
-			shell.add(widget, 'main');
-		    }
-		});
-		tableMenu.addItem({ command });
-	    }
-	    //palette.addItem({ command, category: 'Extension Examples' });
-	    gprimeMenu.addGroup([{type: 'submenu' as Menu.ItemType,
-				  submenu: tableMenu}])
+	function createPanel(): Promise<gPrimePanel> {
+	    let panel: gPrimePanel;
+	    return manager.ready.then(async () => {
+		panel = new gPrimePanel(translator);
+		await panel.populateMenu(commands, shell);
+		shell.add(panel, 'main');
+		return panel;
+	    });
 	}
-	mainMenu.addMenu(gprimeMenu.menu);
+
+	// Add launcher
+	if (launcher) {
+	    launcher.add({
+		command: "gprime:launch",
+		category: trans.__("Applications")
+	    });
+	}
+
+	commands.addCommand("gprime:launch", {
+	    label: trans.__('Launch gPrime'),
+	    caption: trans.__('Launch gPrime'),
+	    execute: createPanel
+	});
+
     }
 
 };
