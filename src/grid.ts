@@ -1,9 +1,10 @@
 import {
     DataGrid,
-    DataModel,
     BasicKeyHandler,
     BasicMouseHandler,
-    BasicSelectionModel
+    BasicSelectionModel,
+    DataModel,
+    MutableDataModel,
 } from '@lumino/datagrid';
 import { StackedPanel } from '@lumino/widgets';
 import { Signal } from "@lumino/signaling";
@@ -17,6 +18,10 @@ import {
 import { Database, Table } from './database';
 import { get } from './handler';
 import { ISlice, parseSlices } from "./slice";
+
+import {
+  getKeyboardLayout
+} from '@lumino/keyboard';
 
 export class DataGridPanel extends StackedPanel {
     private _translator: ITranslator;
@@ -34,19 +39,32 @@ export class DataGridPanel extends StackedPanel {
 	this.title.closable = true;
 
 	const model = new HugeDataModel(database, table.name);
-	const grid = new DataGrid();
+
+	let blueStripeStyle: DataGrid.Style = {
+	    ...DataGrid.defaultStyle,
+	    rowBackgroundColor: i => i % 2 === 0 ? 'rgba(138, 172, 200, 0.3)' : '',
+	    columnBackgroundColor: i => i % 2 === 0 ? 'rgba(100, 100, 100, 0.1)' : ''
+	};
+
+	const grid = new DataGrid({ style: blueStripeStyle });
 	for (let i=0; i < database.column_widths.length; i++) {
 	    grid.resizeColumn("body", i, database.column_widths[i]);
 	}
 	grid.keyHandler = new BasicKeyHandler();
 	grid.mouseHandler = new BasicMouseHandler();
+	grid.editingEnabled = true;
 	grid.dataModel = model;
-	grid.selectionModel = new BasicSelectionModel({dataModel: model});
+	grid.selectionModel = new BasicSelectionModel(
+	    {
+		dataModel: model,
+		selectionMode: 'cell'
+	    }
+	);
 	this.addWidget(grid);
     }
 }
 
-export class HugeDataModel extends DataModel {
+export class HugeDataModel extends MutableDataModel {
     private _database: Database;
     private _table: string;
 
@@ -276,4 +294,115 @@ export class HugeDataModel extends DataModel {
     dataFetch(params : any) {
 	return get("table_page", params);
     }
+
+    metadata(region: DataModel.CellRegion, row: number, column: number): DataModel.Metadata {
+	// return metadata about this region
+	switch (region) {
+	case 'body':
+	    return {"type": "string"};
+	default:
+	    return {};
+	}
+    }
+
+    setData(region: DataModel.CellRegion, row: number, col: number, value: any): boolean {
+	switch (region) {
+	case 'body':
+	    console.log("setData", row, col, value);
+	    const relRow = row % this._blockSize;
+	    const relCol = col % this._blockSize;
+	    const rowBlock = (row - relRow) / this._blockSize;
+	    const colBlock = (col - relCol) / this._blockSize;
+	    this._blocks[rowBlock][colBlock][relRow][relCol] = value; // TODO: get back from database
+	    break;
+	default:
+	    throw 'cannot change header data';
+	}
+
+	this.emitChanged({
+	    type: 'cells-changed',
+	    region: 'body',
+	    row: row,
+	    column: col,
+	    rowSpan: 1,
+	    columnSpan: 1
+	});
+
+	return true;
+    }
+
 }
+
+/* Examples of editing metdata types:
+        {
+          "name": "index",
+          "type": "integer"
+        },
+        {
+          "name": "Name",
+          "type": "string",
+          "constraint": {
+            "minLength": 2,
+            "maxLength": 100,
+            "pattern": "[a-zA-Z]"
+          }
+        },
+        {
+          "name": "Origin",
+          "type": "string",
+          "constraint": {
+            "enum": "dynamic"
+          }
+        },
+        {
+          "name": "Revenue",
+          "type": "string",
+          "constraint": {
+            "enum": [
+              "$1-5 bn", "$5-20 bn", "$20-100 bn"
+            ]
+          }
+        },
+        {
+          "name": "Cylinders",
+          "type": "array",
+          "constraint": {
+            "enum": [
+              2, 3, 4, 6, 8, 16
+            ]
+          }
+        },
+        {
+          "name": "Horsepower",
+          "type": "number",
+          "constraint": {
+            "minimum": 50,
+            "maximum": 900
+          }
+        },
+        {
+          "name": "Models",
+          "type": "integer",
+          "constraint": {
+            "minimum": 1,
+            "maximum": 30
+          }
+        },
+        {
+          "name": "Automatic",
+          "type": "boolean"
+        },
+        {
+          "name": "Date in Service",
+          "type": "date"
+        },
+        {
+          "name": "Contact",
+          "type": "string",
+          "format": "email"
+        },
+        {
+          "name": "Corp. Data",
+          "type": "object"
+        }
+*/

@@ -806,9 +806,14 @@
         "signature": "837bba7e8cd6985d16e97019e0860dce6c6798a2bda527128825d4138e4afed0",
         "affectsGlobalScope": false
       },
+      "./node_modules/@lumino/keyboard/types/index.d.ts": {
+        "version": "f7d502fd5f0234e503aa1a107c2c43c6c56ab52d4861346e91bff045785ec4a9",
+        "signature": "f7d502fd5f0234e503aa1a107c2c43c6c56ab52d4861346e91bff045785ec4a9",
+        "affectsGlobalScope": false
+      },
       "./src/grid.ts": {
-        "version": "a8054595edcf97cb672c6f2a8f30eaf5dfccb8f96426f76bfaa87132510f2a22",
-        "signature": "dcbae966639773bc5175ef6557ac889231c0ab7678b8cf3e12407c13ff478e66",
+        "version": "145caeab6ba60771ef61a95f5a429eabc97a2155c4af15b5d22f2fb596b8748d",
+        "signature": "97e4c6c07d522255e09c8d13b0ea2af291b54ee015ade42b3b50f7dc0802e433",
         "affectsGlobalScope": false
       },
       "./node_modules/@jupyterlab/application/lib/tokens.d.ts": {
@@ -3812,6 +3817,7 @@
       "./src/grid.ts": [
         "./node_modules/@jupyterlab/translation/lib/index.d.ts",
         "./node_modules/@lumino/datagrid/types/index.d.ts",
+        "./node_modules/@lumino/keyboard/types/index.d.ts",
         "./node_modules/@lumino/signaling/types/index.d.ts",
         "./node_modules/@lumino/widgets/types/index.d.ts",
         "./src/database.ts",
@@ -5980,6 +5986,7 @@
       "./node_modules/@lumino/datagrid/types/selectionmodel.d.ts",
       "./node_modules/@lumino/datagrid/types/textrenderer.d.ts",
       "./node_modules/@lumino/disposable/types/index.d.ts",
+      "./node_modules/@lumino/keyboard/types/index.d.ts",
       "./node_modules/@lumino/messaging/types/index.d.ts",
       "./node_modules/@lumino/polling/types/index.d.ts",
       "./node_modules/@lumino/polling/types/poll.d.ts",
