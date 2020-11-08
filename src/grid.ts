@@ -29,7 +29,7 @@ export class DataGridPanel extends StackedPanel {
 
 	this.addClass('gprime-view');
 	this.id = `gprime-datagrid-${table.name}`;
-	this.title.label = `${table.proper}`;
+	this.title.label = `${table.proper}: ${database.name}`;
 	this.title.caption = `${database.name}: ${table.name}`;
 	this.title.closable = true;
 

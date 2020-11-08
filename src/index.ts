@@ -4,14 +4,15 @@ import {
 } from '@jupyterlab/application';
 import { ICommandPalette } from '@jupyterlab/apputils';
 import { ILauncher } from '@jupyterlab/launcher';
+import { IMainMenu } from '@jupyterlab/mainmenu';
 import {
     ITranslator,
     nullTranslator,
     TranslationBundle
 } from '@jupyterlab/translation';
 
-import {Database, Table} from "./database";
 import { gPrimePanel } from './panel';
+import { populateMenu } from './utils';
 
 /**
  * Initialization data for the extension1 extension.
@@ -19,12 +20,13 @@ import { gPrimePanel } from './panel';
 const extension: JupyterFrontEndPlugin<void> = {
     id: 'gprime',
     autoStart: true,
-    requires: [ICommandPalette, ITranslator, ILauncher],
+    requires: [ICommandPalette, ITranslator, ILauncher, IMainMenu],
     activate: async (
 	app: JupyterFrontEnd,
 	palette: ICommandPalette,
 	translator: ITranslator,
-	launcher: ILauncher
+	launcher: ILauncher,
+	mainMenu: IMainMenu
     ) => {
 	const { commands, shell } = app;
 	const manager = app.serviceManager;
@@ -34,7 +36,6 @@ const extension: JupyterFrontEndPlugin<void> = {
 	    let panel: gPrimePanel;
 	    return manager.ready.then(async () => {
 		panel = new gPrimePanel(translator);
-		await panel.populateMenu(commands, shell);
 		shell.add(panel, 'main');
 		return panel;
 	    });
@@ -54,6 +55,7 @@ const extension: JupyterFrontEndPlugin<void> = {
 	    execute: createPanel
 	});
 
+	await populateMenu(commands, shell, mainMenu, translator);
     }
 
 };
