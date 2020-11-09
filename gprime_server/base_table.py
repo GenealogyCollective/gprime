@@ -1,4 +1,5 @@
 import pickle
+import re
 
 class UIState():
     def __init__(self):
@@ -50,6 +51,7 @@ class BaseTable():
             row_results = []
             for col in range(self.cols):
                 if col_span[0] <= col <= col_span[1]:
-                    row_results.append(model.fmap[col](data))
+                    value = model.fmap[col](data)
+                    row_results.append(value)
             results.append(row_results)
         return results

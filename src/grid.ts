@@ -5,6 +5,8 @@ import {
     BasicSelectionModel,
     DataModel,
     MutableDataModel,
+    CellRenderer,
+    TextRenderer
 } from '@lumino/datagrid';
 import { StackedPanel } from '@lumino/widgets';
 import { Signal } from "@lumino/signaling";
@@ -60,6 +62,24 @@ export class DataGridPanel extends StackedPanel {
 		selectionMode: 'cell'
 	    }
 	);
+
+	const errorFont: CellRenderer.ConfigFunc<string> = ({ value }) => {
+	    if (value.startsWith("<b>")) {
+		return 'bold 12px sans-serif'
+	    } else if (value.startsWith("<i>")) {
+		return 'italic 12px sans-serif'
+	    } else {
+		return '12px sans-serif'
+	    }
+	};
+	let errorRenderer = new TextRenderer({
+	    font: errorFont,
+	    format: (cellConfig) => {
+		console.log(cellConfig.value);
+		return cellConfig.value.replaceAll(/<\/?[bi]>/g, "");
+	    }
+	});
+	grid.cellRenderers.update({ 'body': errorRenderer });
 	this.addWidget(grid);
     }
 }
