@@ -23,7 +23,7 @@ from .base_table import BaseTable
 class Person(BaseTable):
     VIEW = PersonListView
     MODEL = PersonListModel
-    INDEX = "surname"
+    INDEX = "surname, given_name"
 
 class Citation(BaseTable):
     VIEW = CitationListView
