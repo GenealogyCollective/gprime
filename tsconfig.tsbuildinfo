@@ -122,8 +122,8 @@
         "affectsGlobalScope": false
       },
       "./src/database.ts": {
-        "version": "83d32c13629d355400e7dfbc51037b105f977d2f8d6fb5e247b6bbd4354bc730",
-        "signature": "a298ad7e5def932065fb876e634a5ea3c7e957257f503593a8ff8dba55e410bc",
+        "version": "90fd98ff5fc413e97aabdc38ed6f1fef73daf7b19376b8526c954d4b888dd45f",
+        "signature": "f95f3dc87af721e4b33ac798b745b1273cc26e292761f30ba757302d411d76dd",
         "affectsGlobalScope": false
       },
       "./src/constants.ts": {
@@ -812,7 +812,7 @@
         "affectsGlobalScope": false
       },
       "./src/grid.ts": {
-        "version": "b684a780da8b543218b52f916ac5f2da909ab2053f340a9ebb7ddc6dc0fd2655",
+        "version": "0faf8b8da10e6c65c7bd1597ca8327ff63509a113a83de3564bac803b0ebf528",
         "signature": "97e4c6c07d522255e09c8d13b0ea2af291b54ee015ade42b3b50f7dc0802e433",
         "affectsGlobalScope": false
       },
@@ -2002,13 +2002,18 @@
         "affectsGlobalScope": false
       },
       "./src/utils.ts": {
-        "version": "ce66c2e3ba03bf30fa5ad50cab443ab290bc410e5d888dfb17a9142b436c5d4d",
+        "version": "4074184319c35c031a13b0b5d189928f0f015f28738dcff5c718f7b7afbf0985",
         "signature": "5210ff6493684cbfb22ebee7947c50999bb1fab25b6dc1df602a22a9949fec0f",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
         "version": "174855931009d6c390dbdcab5438ebe299a48f24582c288575a2335e313b6fa9",
         "signature": "826ccd8b8c156dff406d5092da145d457a8e53ca677459aa26abfae17e1a506a",
+        "affectsGlobalScope": false
+      },
+      "./src/svg.d.ts": {
+        "version": "e3ebbe1b276024db9ed1f4b633d10e6253afc73df96f6afcc74e7c2733371d50",
+        "signature": "e3ebbe1b276024db9ed1f4b633d10e6253afc73df96f6afcc74e7c2733371d50",
         "affectsGlobalScope": false
       }
     },
@@ -3845,12 +3850,14 @@
         "./node_modules/@jupyterlab/application/lib/index.d.ts",
         "./node_modules/@jupyterlab/mainmenu/lib/index.d.ts",
         "./node_modules/@jupyterlab/translation/lib/index.d.ts",
+        "./node_modules/@jupyterlab/ui-components/lib/index.d.ts",
         "./node_modules/@lumino/commands/types/index.d.ts",
         "./node_modules/@lumino/widgets/types/index.d.ts",
         "./src/constants.ts",
         "./src/database.ts",
         "./src/grid.ts",
-        "./src/handler.ts"
+        "./src/handler.ts",
+        "./src/svg.d.ts"
       ]
     },
     "exportedModulesMap": {
@@ -6056,6 +6063,7 @@
       "./src/index.ts",
       "./src/panel.ts",
       "./src/slice.ts",
+      "./src/svg.d.ts",
       "./src/utils.ts"
     ]
   },

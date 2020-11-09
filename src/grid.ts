@@ -64,19 +64,24 @@ export class DataGridPanel extends StackedPanel {
 	);
 
 	const errorFont: CellRenderer.ConfigFunc<string> = ({ value }) => {
-	    if (value.startsWith("<b>")) {
-		return 'bold 12px sans-serif'
-	    } else if (value.startsWith("<i>")) {
-		return 'italic 12px sans-serif'
-	    } else {
-		return '12px sans-serif'
+	    if (value) {
+		if (value.startsWith("<b>")) {
+		    return 'bold 12px sans-serif'
+		} else if (value.startsWith("<i>")) {
+		    return 'italic 12px sans-serif'
+		}
 	    }
+	    return '12px sans-serif'
 	};
 	let errorRenderer = new TextRenderer({
 	    font: errorFont,
 	    format: (cellConfig) => {
-		console.log(cellConfig.value);
-		return cellConfig.value.replaceAll(/<\/?[bi]>/g, "");
+		const value = cellConfig.value;
+		if (value) {
+		    return value.replaceAll(/<\/?[bi]>/g, "");
+		} else {
+		    return "";
+		}
 	    }
 	});
 	grid.cellRenderers.update({ 'body': errorRenderer });
@@ -328,7 +333,6 @@ export class HugeDataModel extends MutableDataModel {
     setData(region: DataModel.CellRegion, row: number, col: number, value: any): boolean {
 	switch (region) {
 	case 'body':
-	    console.log("setData", row, col, value);
 	    const relRow = row % this._blockSize;
 	    const relCol = col % this._blockSize;
 	    const rowBlock = (row - relRow) / this._blockSize;

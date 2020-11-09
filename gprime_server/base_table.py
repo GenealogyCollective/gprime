@@ -15,6 +15,7 @@ class BaseTable():
         self.column_labels = [column[0] for column in self.VIEW.COLUMNS]
         self.rows = self.database._get_table_func(self.TABLE, "count_func")()
         self.cols = len(self.column_labels)
+        self.ICON = self.VIEW.get_stock(None)
 
     def get_table_data(self):
         return {
@@ -22,6 +23,7 @@ class BaseTable():
             "cols": self.cols,
             "column_labels": self.column_labels,  # already translated
             "column_widths": self.config["columns.size"],
+            "icon": self.ICON,
         }
 
     def column_order(self):

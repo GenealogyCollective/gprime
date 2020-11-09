@@ -18,7 +18,7 @@
     "strict": true,
     "strictNullChecks": false,
     "target": "es2017",
-    "types": []
+    "types": [],
   },
-  "include": ["src/*", "src/*/*"]
+    "include": ["src/**/*", "src/svg.d.ts"],
 }

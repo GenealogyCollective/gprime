@@ -13,6 +13,14 @@ import { get } from './handler';
 import { TABLES, CommandIDs, format } from './constants';
 import {DataGridPanel} from "./grid";
 
+import { LabIcon } from '@jupyterlab/ui-components';
+import gramps_person_svg from './gramps-person.svg';
+
+const personIcon = new LabIcon({
+    name: 'gprime:gramps-person',
+    svgstr: gramps_person_svg
+});				
+
 export async function populateMenu(commands: CommandRegistry,
 		   shell: JupyterFrontEnd.IShell,
 		   mainMenu: IMainMenu,
@@ -36,7 +44,6 @@ export async function populateMenu(commands: CommandRegistry,
 	tableMenu.title.label = database_name;
 	for (let table of TABLES) {
 	    const command = format(open_table, {database_name, table_name: table.name});
-	    console.log("command:", command);
 	    commands.addCommand(command, {
 		label: table.proper, // Person, Family, Repository, ...
 		execute: async (args: any) => {
@@ -52,7 +59,11 @@ export async function populateMenu(commands: CommandRegistry,
 		    database.cols = results.cols;
 		    database.column_labels = results.column_labels;
 		    database.column_widths = results.column_widths;
+		    database.icon = results.icon;
 		    const widget = new DataGridPanel(translator, database, table);
+
+		    widget.title.icon = personIcon;
+
 		    shell.add(widget, 'main');
 		}
 	    });

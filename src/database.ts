@@ -35,4 +35,5 @@ export class Database {
     public cols: number;
     public column_labels: string[];
     public column_widths: number[];
+    public icon: string;
 }
