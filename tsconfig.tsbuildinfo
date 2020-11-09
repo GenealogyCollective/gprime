@@ -122,13 +122,13 @@
         "affectsGlobalScope": false
       },
       "./src/database.ts": {
-        "version": "90fd98ff5fc413e97aabdc38ed6f1fef73daf7b19376b8526c954d4b888dd45f",
-        "signature": "f95f3dc87af721e4b33ac798b745b1273cc26e292761f30ba757302d411d76dd",
+        "version": "816ad9713b573831b508174b8694bd540df8f1189877219370ec08ecb793cc48",
+        "signature": "cf63976fc847d286f0fecb6dfaaf4b1237233bf4611014088c8a0d98a086ab91",
         "affectsGlobalScope": false
       },
       "./src/constants.ts": {
-        "version": "8259429d4e5719ae70c08c6d9e48a22c5275b279f9a30d457ca48eccbec0b5bf",
-        "signature": "de247da92dc1ea982d42b1271e8dce8ad043181a1e483230699b838567be44e3",
+        "version": "8f38d7c76be75ab13097031c58131049f75879e8457b32bacc556f4eb6b2b6a8",
+        "signature": "cb46b91cbd68fc1004084b512234179d93a07f239331990ed396b1e2e45e076c",
         "affectsGlobalScope": false
       },
       "./node_modules/@lumino/algorithm/types/array.d.ts": {
@@ -812,8 +812,8 @@
         "affectsGlobalScope": false
       },
       "./src/grid.ts": {
-        "version": "0faf8b8da10e6c65c7bd1597ca8327ff63509a113a83de3564bac803b0ebf528",
-        "signature": "97e4c6c07d522255e09c8d13b0ea2af291b54ee015ade42b3b50f7dc0802e433",
+        "version": "275abce89d58dca940cb4fb61f193f4c3326667015b23e40c5206e5d86ad37d8",
+        "signature": "114b9839597c05b3fca2b52180379642b4e97d9ec0790993757706e72aac5fe7",
         "affectsGlobalScope": false
       },
       "./node_modules/@jupyterlab/application/lib/tokens.d.ts": {
@@ -2002,7 +2002,7 @@
         "affectsGlobalScope": false
       },
       "./src/utils.ts": {
-        "version": "4074184319c35c031a13b0b5d189928f0f015f28738dcff5c718f7b7afbf0985",
+        "version": "2dea85ec880e93f5d0f9df0453be456cf2ccf33318279ccb38570d56927a014a",
         "signature": "5210ff6493684cbfb22ebee7947c50999bb1fab25b6dc1df602a22a9949fec0f",
         "affectsGlobalScope": false
       },

@@ -1,15 +1,15 @@
-import {Table} from "./database";
+import {TableType} from "./database";
 
-export const TABLES = [
-    new Table("person", "People"),
-    new Table("family", "Families"),
-    new Table("event", "Events"),
-    new Table("place", "Places"),
-    new Table("source", "Sources"),
-    new Table("citation", "Citations"),
-    new Table("repository", "Repositories"),
-    new Table("media", "Media"),
-    new Table("note", "Notes")
+export const TABLE_TYPES = [
+    new TableType("person", "People"),
+    new TableType("family", "Families"),
+    new TableType("event", "Events"),
+    new TableType("place", "Places"),
+    new TableType("source", "Sources"),
+    new TableType("citation", "Citations"),
+    new TableType("repository", "Repositories"),
+    new TableType("media", "Media"),
+    new TableType("note", "Notes")
 ]
 
 export namespace CommandIDs {

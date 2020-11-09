@@ -29,18 +29,18 @@ export class DataGridPanel extends StackedPanel {
     private _translator: ITranslator;
     private _trans: TranslationBundle;
 
-    constructor(translator: ITranslator, database: Database, table: Table) {
+    constructor(translator: ITranslator, table: Table) {
 	super();
 	this._translator = translator || nullTranslator;
 	this._trans = this._translator.load('jupyterlab');
 
 	this.addClass('gprime-view');
 	this.id = `gprime-datagrid-${table.name}`;
-	this.title.label = `${table.proper}: ${database.name}`;
-	this.title.caption = `${database.name}: ${table.name}`;
+	this.title.label = `${table.proper}: ${table.database.name}`;
+	this.title.caption = `${table.database.name}: ${table.name}`;
 	this.title.closable = true;
 
-	const model = new HugeDataModel(database, table.name);
+	const model = new HugeDataModel(table);
 
 	let blueStripeStyle: DataGrid.Style = {
 	    ...DataGrid.defaultStyle,
@@ -49,8 +49,8 @@ export class DataGridPanel extends StackedPanel {
 	};
 
 	const grid = new DataGrid({ style: blueStripeStyle });
-	for (let i=0; i < database.column_widths.length; i++) {
-	    grid.resizeColumn("body", i, database.column_widths[i]);
+	for (let i=0; i < table.column_widths.length; i++) {
+	    grid.resizeColumn("body", i, table.column_widths[i]);
 	}
 	grid.keyHandler = new BasicKeyHandler();
 	grid.mouseHandler = new BasicMouseHandler();
@@ -90,8 +90,7 @@ export class DataGridPanel extends StackedPanel {
 }
 
 export class HugeDataModel extends MutableDataModel {
-    private _database: Database;
-    private _table: string;
+    private _table: Table;
 
     private _slice: string = "";
     private _colSlice: ISlice = { start: null, stop: null };
@@ -104,13 +103,12 @@ export class HugeDataModel extends MutableDataModel {
 
     private _refreshed = new Signal<this, void>(this);
 
-    constructor(database: Database, table: string) {
+    constructor(table: Table) {
 	super();
-	this._database = database;
 	this._table = table;
 
-	this._rowCount = database.rows;
-	this._colCount = database.cols;
+	this._rowCount = table.rows;
+	this._colCount = table.cols;
 
 	this.emitChanged({
 	    type: "rows-inserted",
@@ -163,7 +161,7 @@ export class HugeDataModel extends MutableDataModel {
 	    return `${row + 1}`
 	}
 	if (region === "column-header") {
-	    return this._database.column_labels[col];
+	    return this._table.column_labels[col];
 	}
 	if (region === "corner-header") {
 	    return null;
@@ -288,8 +286,8 @@ export class HugeDataModel extends MutableDataModel {
 	);
 
 	const params = {
-	    table: this._table,
-	    dirpath: this._database.dirpath,
+	    table: this._table.name,
+	    dirpath: this._table.database.dirpath,
 	    row: [rowStart, rowStop],
 	    col: [colStart, colStop]
 	};
@@ -337,7 +335,8 @@ export class HugeDataModel extends MutableDataModel {
 	    const relCol = col % this._blockSize;
 	    const rowBlock = (row - relRow) / this._blockSize;
 	    const colBlock = (col - relCol) / this._blockSize;
-	    this._blocks[rowBlock][colBlock][relRow][relCol] = value; // TODO: get back from database
+	    this._blocks[rowBlock][colBlock][relRow][relCol] = value;
+	    // TODO: get back from database
 	    break;
 	default:
 	    throw 'cannot change header data';

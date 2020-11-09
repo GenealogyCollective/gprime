@@ -1,4 +1,4 @@
-export class Table {
+export class TableType {
     public name: string;
     public proper: string;
 
@@ -18,10 +18,6 @@ export class Database {
 	this.enable = object.enable;
 	this.stock_id = object.stock_id;
 	this.backend_type = object.backend_type;
-	this.rows = 0;
-	this.cols = 0;
-	this.column_labels = [];
-	this.column_widths = [];
     }
     public name: string;
     public dirpath: string;
@@ -31,6 +27,22 @@ export class Database {
     public enable: Boolean;
     public stock_id: string;
     public backend_type: string;
+}
+
+export class Table {
+    constructor(database: Database, name: string, proper: string, options: any) {
+	this.database = database;
+	this.name = name;
+	this.proper = proper;
+	this.rows = options.rows || 0;
+	this.cols = options.cols || 0;
+	this.column_labels = options.column_labels || [];
+	this.column_widths = options.column_widths || [];
+	this.icon = options.icon || null;
+    }
+    public database: Database;
+    public name: string;
+    public proper: string;
     public rows: number;
     public cols: number;
     public column_labels: string[];

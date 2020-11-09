@@ -10,7 +10,7 @@ import { Menu } from '@lumino/widgets';
 
 import {Database, Table} from "./database";
 import { get } from './handler';
-import { TABLES, CommandIDs, format } from './constants';
+import { TABLE_TYPES, CommandIDs, format } from './constants';
 import {DataGridPanel} from "./grid";
 
 import { LabIcon } from '@jupyterlab/ui-components';
@@ -39,35 +39,34 @@ export async function populateMenu(commands: CommandRegistry,
     
     for (const row of results.data) {
 	// Get the name here:
-	const database_name = new Database(row).name;
+	const database = new Database(row);
 	const tableMenu = new Menu({commands});
-	tableMenu.title.label = database_name;
-	for (let table of TABLES) {
-	    const command = format(open_table, {database_name, table_name: table.name});
+	tableMenu.title.label = database.name;
+	for (let table_type of TABLE_TYPES) {
+	    const command = format(open_table, {database_name: database.name,
+						table_name: table_type.name});
 	    commands.addCommand(command, {
-		label: table.proper, // Person, Family, Repository, ...
+		label: table_type.proper, // Person, Family, Repository, ...
 		execute: async (args: any) => {
-		    // Make sure grids don't share database instances:
 		    const database = new Database(row);
-		    const results = await get(
+		    const table_data = await get(
 			"table_data",
 			{
 			    "dirpath": database.dirpath,
-			    "table": table.name,
+			    "table": table_type.name,
 			});
-		    database.rows = results.rows;
-		    database.cols = results.cols;
-		    database.column_labels = results.column_labels;
-		    database.column_widths = results.column_widths;
-		    database.icon = results.icon;
-		    const widget = new DataGridPanel(translator, database, table);
+		    const table = new Table(database, table_type.name,
+					    table_type.proper, table_data);
+		    const widget = new DataGridPanel(translator, table);
 
 		    widget.title.icon = personIcon;
 
 		    shell.add(widget, 'main');
 		}
 	    });
-	    tableMenu.addItem({command, args: {database_name, table_name: table.name}});
+	    tableMenu.addItem(
+		{command, args: {database_name: database.name,
+				 table_name: table_type.name}});
 	}
 	//palette.addItem({ command, category: 'Extension Examples' });
 	dbMenu.addItem({ type: 'submenu', submenu: tableMenu });
