@@ -57,6 +57,7 @@ export class DataGridPanel extends StackedPanel {
 	for (let i=0; i < table.column_widths.length; i++) {
 	    grid.resizeColumn("body", i, table.column_widths[i]);
 	}
+	grid.stretchLastColumn = true;
 	grid.keyHandler = new BasicKeyHandler();
 	grid.mouseHandler = new BasicMouseHandler();
 	grid.editingEnabled = true;

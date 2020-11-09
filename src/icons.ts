@@ -1,14 +1,14 @@
 import { LabIcon } from '@jupyterlab/ui-components';
 
-import gramps_citation_svg from './gramps-citation.svg';
-import gramps_event_svg from './gramps-event.svg';
-import gramps_media_svg from './gramps-media.svg';
-import gramps_note_svg from './gramps-notes.svg';
-import gramps_person_svg from './gramps-person.svg';
-import gramps_place_svg from './gramps-place.svg';
-import gramps_repository_svg from './gramps-repository.svg';
-import gramps_source_svg from './gramps-source.svg';
-import gramps_family_svg from './person-family.svg';
+import gramps_citation_svg from '../style/gramps-citation.svg';
+import gramps_event_svg from '../style/gramps-event.svg';
+import gramps_media_svg from '../style/gramps-media.svg';
+import gramps_note_svg from '../style/gramps-notes.svg';
+import gramps_person_svg from '../style/gramps-person.svg';
+import gramps_place_svg from '../style/gramps-place.svg';
+import gramps_repository_svg from '../style/gramps-repository.svg';
+import gramps_source_svg from '../style/gramps-source.svg';
+import gramps_family_svg from '../style/person-family.svg';
 
 const citationIcon = new LabIcon({
     name: 'gprime-icon:gramps-citation',
