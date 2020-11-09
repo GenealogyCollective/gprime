@@ -11,15 +11,8 @@ import { Menu } from '@lumino/widgets';
 import {Database, Table} from "./database";
 import { get } from './handler';
 import { TABLE_TYPES, CommandIDs, format } from './constants';
+import { ICON_TABLE } from './icons';
 import {DataGridPanel} from "./grid";
-
-import { LabIcon } from '@jupyterlab/ui-components';
-import gramps_person_svg from './gramps-person.svg';
-
-const personIcon = new LabIcon({
-    name: 'gprime:gramps-person',
-    svgstr: gramps_person_svg
-});				
 
 export async function populateMenu(commands: CommandRegistry,
 		   shell: JupyterFrontEnd.IShell,
@@ -47,6 +40,7 @@ export async function populateMenu(commands: CommandRegistry,
 						table_name: table_type.name});
 	    commands.addCommand(command, {
 		label: table_type.proper, // Person, Family, Repository, ...
+		icon: ICON_TABLE[table_type.name],
 		execute: async (args: any) => {
 		    const database = new Database(row);
 		    const table_data = await get(
@@ -58,9 +52,6 @@ export async function populateMenu(commands: CommandRegistry,
 		    const table = new Table(database, table_type.name,
 					    table_type.proper, table_data);
 		    const widget = new DataGridPanel(translator, table);
-
-		    widget.title.icon = personIcon;
-
 		    shell.add(widget, 'main');
 		}
 	    });

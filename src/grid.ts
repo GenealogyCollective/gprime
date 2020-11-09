@@ -25,6 +25,10 @@ import {
   getKeyboardLayout
 } from '@lumino/keyboard';
 
+import {
+    ICON_TABLE
+} from "./icons";
+
 export class DataGridPanel extends StackedPanel {
     private _translator: ITranslator;
     private _trans: TranslationBundle;
@@ -39,6 +43,7 @@ export class DataGridPanel extends StackedPanel {
 	this.title.label = `${table.proper}: ${table.database.name}`;
 	this.title.caption = `${table.database.name}: ${table.name}`;
 	this.title.closable = true;
+	this.title.icon = ICON_TABLE[table.name];
 
 	const model = new HugeDataModel(table);
 
