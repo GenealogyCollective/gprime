@@ -18,7 +18,7 @@ export async function requestAPI<T>(
   const settings = ServerConnection.makeSettings();
   const requestUrl = URLExt.join(
     settings.baseUrl,
-    'gprime_server', // API Namespace
+    'gprime', // API Namespace
     endPoint
   );
 
@@ -59,7 +59,7 @@ export async function get(end_point: string, payload: Object = null) {
 	}
     } catch (err) {
 	console.error(
-	    `The gprime_server server extension appears to be missing.\n${err}`
+	    `The gprime server extension appears to be missing.\n${err}`
 	);
     }
     return results;

@@ -1,5 +1,5 @@
 """
-gprime_server setup
+gprime setup
 """
 import json
 import os
@@ -13,7 +13,7 @@ import setuptools
 HERE = os.path.abspath(os.path.dirname(__file__))
 
 # The name of the project
-name="gprime_server"
+name="gprime"
 
 # Get our version
 with open(os.path.join(HERE, 'package.json')) as f:
@@ -38,7 +38,7 @@ labext_name = "gprime"
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, lab_path, "**"),
     ("share/jupyter/labextensions/%s" % labext_name, HERE, "install.json"),("etc/jupyter/jupyter_server_config.d",
-     "jupyter-config", "gprime_server.json"),
+     "jupyter-config", "gprime.json"),
      
 ]
 

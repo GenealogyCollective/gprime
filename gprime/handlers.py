@@ -61,7 +61,7 @@ class RouteHandler(APIHandler):
     @tornado.web.authenticated
     def get(self):
         self.finish(json.dumps({
-            "data": "This is /gprime_server/get_example endpoint!!"
+            "data": "This is /gprime/get_example endpoint!!"
         }))
 
 class databases(APIHandler):
@@ -101,13 +101,13 @@ def setup_handlers(web_app):
 
     handlers = []
 
-    route_pattern = url_path_join(base_url, "gprime_server", "databases")
+    route_pattern = url_path_join(base_url, "gprime", "databases")
     handlers += [(route_pattern, databases)]
 
-    route_pattern = url_path_join(base_url, "gprime_server", "table_data")
+    route_pattern = url_path_join(base_url, "gprime", "table_data")
     handlers += [(route_pattern, table_data)]
 
-    route_pattern = url_path_join(base_url, "gprime_server", "table_page")
+    route_pattern = url_path_join(base_url, "gprime", "table_page")
     handlers += [(route_pattern, table_page)]
 
     web_app.add_handlers(host_pattern, handlers)

@@ -18,7 +18,7 @@ def _jupyter_labextension_paths():
 
 def _jupyter_server_extension_points():
     return [{
-        "module": "gprime_server"
+        "module": "gprime"
     }]
 
 def _load_jupyter_server_extension(server_app):
@@ -30,5 +30,5 @@ def _load_jupyter_server_extension(server_app):
         JupyterLab application instance
     """
     setup_handlers(server_app.web_app)
-    server_app.log.info("Registered HelloWorld extension at URL path /gprime_server")
+    server_app.log.info("Registered HelloWorld extension at URL path /gprime")
 

@@ -797,7 +797,7 @@
         "affectsGlobalScope": false
       },
       "./src/handler.ts": {
-        "version": "5e75a51294e7309b71d794ca75e5d910ff0f1c4dce84253d61506c4b230d75c3",
+        "version": "77d0ee67fbc511a45d59e94ad3b38bb375a3e9853870e550e5830abffdcf06e9",
         "signature": "ce2d86c1b84d1415ed12503b298a6619332f1f391cf85f9925036a9c51742b3a",
         "affectsGlobalScope": false
       },

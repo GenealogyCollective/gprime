@@ -1,13 +1,13 @@
 include LICENSE
 include README.md
 include pyproject.toml
-include jupyter-config/gprime_server.json
+include jupyter-config/gprime.json
 
 include package.json
 include install.json
 include ts*.json
 
-graft gprime_server/labextension
+graft gprime/labextension
 
 # Javascript files
 graft src

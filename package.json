@@ -78,11 +78,11 @@
           "pip"
         ],
         "base": {
-          "name": "gprime_server"
+          "name": "gprime"
         }
       }
     },
     "extension": true,
-    "outputDir": "gprime_server/labextension"
+    "outputDir": "gprime/labextension"
   }
 }
