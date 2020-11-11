@@ -13,7 +13,7 @@ view, and model data. However, it will take advantage of Gramps sqlite
 database directly where it can for speed.
 
 gPrime is a JupyterLab extension. This extension is composed of a
-Python package named `gprime_server` for the server extension and a
+Python package named `gprime` for the server extension and a
 NPM package named `gprime` for the frontend extension.
 
 To use gPrime you will need:
@@ -39,7 +39,7 @@ pip install git+https://github.com:GenealogyCollective/gprime
 ## Install
 
 ```bash
-pip install gprime_server
+pip install gprime
 ```
 
 ## Troubleshooting
@@ -71,7 +71,7 @@ The `jlpm` command is JupyterLab's pinned version of
 
 ```bash
 # Clone the repo to your local environment
-# Change directory to the gprime_server directory
+# Change directory to the gprime directory
 # Install package in development mode
 pip install -e .
 # Link your development version of the extension with JupyterLab
@@ -100,6 +100,6 @@ jupyter lab build --minimize=False
 ### Uninstall
 
 ```bash
-pip uninstall gprime_server
+pip uninstall gprime
 jupyter labextension uninstall gprime
 ```

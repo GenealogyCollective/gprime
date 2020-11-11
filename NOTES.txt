@@ -2,13 +2,13 @@ python -m pip install .
 
 mkdir  /home/dblank/.jupyter/jupyter_server_config.d
 
-sudo mv /usr/local/etc/jupyter/jupyter_server_config.d/gprime_server.json /home/dblank/.jupyter/jupyter_server_config.d/
+sudo mv /usr/local/etc/jupyter/jupyter_server_config.d/gprime.json /home/dblank/.jupyter/jupyter_server_config.d/
 
 mv /usr/local/lib/python3.8/dist-packages/gprime* ~/.local/lib/python3.8/site-packages/
 
-ln -s /home/dblank/gprime/gprime_server ~/.local/lib/python3.8/site-packages/
+ln -s /home/dblank/gprime/gprime ~/.local/lib/python3.8/site-packages/
 
-sudo ln -s /home/dblank/gprime/gprime_server/labextension/ /usr/local/share/jupyter/labextensions/gprime
+sudo ln -s /home/dblank/gprime/gprime/labextension/ /usr/local/share/jupyter/labextensions/gprime
 
 
 There are three things that need to be available to Jupyter Lab:
@@ -16,7 +16,7 @@ There are three things that need to be available to Jupyter Lab:
 1. the python package
    however you make a python package available (ie, pip install)
 2. the server config json
-   /usr/local/etc/jupyter/jupyter_server_config.d/gprime_server.json
+   /usr/local/etc/jupyter/jupyter_server_config.d/gprime.json
 3. the extension files
    /usr/local/share/jupyter/labextensions/gprime
 
