@@ -65,13 +65,14 @@ class Source(BaseTable):
     MODEL = SourceModel
     INDEX = "gramps_id"
 
-table_map = {}
-table_map["person"] = Person
-table_map["citation"] = Citation
-table_map["event"] = Event
-table_map["family"] = Family
-table_map["media"] = Media
-table_map["note"] = Note
-table_map["place"] = Place
-table_map["repository"] = Repository
-table_map["source"] = Source
+TABLE_MAP = {
+    "person": Person,
+    "citation": Citation,
+    "event": Event,
+    "family": Family,
+    "media": Media,
+    "note": Note,
+    "place": Place,
+    "repository": Repository,
+    "source": Source,
+}
