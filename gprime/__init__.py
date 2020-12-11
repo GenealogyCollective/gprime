@@ -1,6 +1,9 @@
 
 import json
 import os.path as osp
+import gi
+
+gi.require_version('Gtk', '3.0')
 
 from ._version import __version__
 from .handlers import setup_handlers
